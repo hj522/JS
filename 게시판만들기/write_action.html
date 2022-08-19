@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+    <meta charset="UTF-8">
+<!-- 이 페이지는 사용자에게 보여지는 내용은 없음
+     지금부터 하는 내용은 사실 사기에 가까움. 왜 그런지 생각해보삼
+-->
+<script src="./boardlib.js"></script>
+<script>
+    // 넘어온 값들
+    var v_title = request.getParameter("nm_title");
+    var v_writer = request.getParameter("nm_writer");
+    var v_level = request.getParameter("nm_level");
+    var v_cats = request.getParameterValues("nm_cat");
+    var v_content = request.getParameter("nm_content").replaceAll("+"," "); // 주소표시줄 +를 공백으로 바꾸기
+
+    // localStorage에 저장하기
+  //  var v_tblName = "gesiTB";
+    var v_arrTotal = [];
+    var v_pid = 1;  // 없을 때 초기값 설정
+
+    // Primary-Key(검색을 편하게 -> 기본키(식별키))
+    
+    // 오늘의 숙제
+    // 쓰는 글들이 덮어써지지 않고 기존 배열에 추가되어 localStorage에 모두 저장되도록 한다.
+    // 힌트: localStorage.getItem과 JSON.parse를 함께 잘 사용하면 됩니다.
+
+    // 값을 맨처음 넣을 때와 이미 값이 존재하고 있을 때를 구분
+    // alert(localStorage.getItem(v_tblName)); //키값 없을때 뭐가 뜨는지 확인 -> null 
+    if(localStorage.getItem(v_tblName)) { // null이면 false
+       v_arrTotal = JSON.parse(localStorage.getItem(v_tblName));
+       v_pid = v_arrTotal[v_arrTotal.length-1].pid + 1;
+    }
+
+    var v_gul = {}; // 묶어주기 위한 빈 객체(name-space로 봐도 무방)
+    v_gul.pid = v_pid;     // 고유키를 하나 만들어 주고파
+    v_gul.title = v_title;
+    v_gul.writer = v_writer;
+    v_gul.level = v_level;
+    v_gul.cats = v_cats;
+    v_gul.content = v_content;
+    v_arrTotal.push(v_gul); // v_gul 객체를 v_arrTotal 배열에 담음
+
+    localStorage.setItem(v_tblName,JSON.stringify(v_arrTotal));
+
+    // 쓰는 것까지 확인. 이제 오데로?
+    // 일단 괜히 사용자에게 잘 써졌다고 알려줌
+    alert("글이 잘 등록 되었어용^-^ 목록으로 갈게요");
+    location.replace("list.html");
+
+</script>

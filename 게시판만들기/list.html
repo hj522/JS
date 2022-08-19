@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<script src="../게시판만들기/boardlib.js"></script>
+<style>
+    .active {      /* 현재 페이지를 표시하기 위한 억지 스타일 */
+        font-size:2em; /* 다섯배 */ 
+        color:rgb(18, 18, 129);
+    }
+</style>
+<body>
+<h1>볼품없는 게시판 리스트</h1>
+<div id="id_disp"></div> <!-- 리스트 출력할 영역 지정 -->
+<script>
+    
+    var v_disp = document.querySelector("#id_disp");
+    var v_dataArr = JSON.parse(localStorage.getItem(v_tblName));
+    /* 페이지를 나누려면 산수가 필요함
+    페이지당 글 수 ?
+    페이지 번호 ?
+    전체 글 수 ?
+    */
+   var v_pDsu = 10;    // 페이지당 글 수 10개
+   var v_pageNum = request.getParameter("pageNum");
+   if(!v_pageNum) {
+        v_pageNum =1; // 페이지넘버가 넘어온 적이 없다면 기본 1페이지
+   }
+   
+   var v_totalG = v_dataArr.length; // 토탈 글 수
+   var v_pageGasu = Math.ceil(v_totalG / v_pDsu); // 나머지가 있으면 1페이지 더 나와야함.. 
+   // 페이지별 글 시작넘버, 끝넘버가 필요
+   // 1페이지는 0~9 인덱스, 2페이지는 10~19 인덱스 ...
+   var v_sNum = (v_pageNum -1) * v_pDsu; // 페이지별 글 시작넘버(곧 배열 인덱스 넘버)
+   var v_eNum = v_sNum + (v_pDsu -1); // 페이지별 글 끝넘버,  시작넘버 + 페이지별개수 -1
+   
+   // 마지막 페이지는 글 개수가 모자랄 수 있음! 포인트
+   if(v_eNum > (v_totalG -1)) {
+        v_eNum = v_totalG -1; // 강제로 마지막 index가 값으로 세팅
+   }
+   
+    var v_tblStr = "<table border=2 width=500px>";
+        v_tblStr += "<tr><th>순번</th><th>제목</th><th>글쓴이</th>";   // tr: table row
+        v_tblStr += "<th>카테고리</th><th>레벨</th><th>삭제</th></tr>"
+      for(var i=v_sNum; i<=v_eNum; i++) { 
+   // for(var i=0; i<v_dataArr.length; i++) {
+        var v_ggul = v_dataArr[i];
+        console.log("i=",i," v_ggul=",v_ggul); // 눈으로 항상 확인
+ //       v_tblStr += "<tr>";
+        v_tblStr += "<tr onmouseover='f_over(this)' onmouseout='f_out(this)' >"; // 마우스오버를 여기에 직접 쓸 수도 있음
+        v_tblStr += "<td>" + (i+1) + "</td>";
+        v_tblStr += "<td><a href=read.html?gnum=" + v_ggul.pid + ">" + v_ggul.title + "</a></td>"; // 어떤 글을 클릭했는지 알 수 있도록 pid 추가.. 쿼리스트링 
+        v_tblStr += "<td>" + v_ggul.writer + "</td>";
+        v_tblStr += "<td>" + v_ggul.cats + "</td>";
+        v_tblStr += "<td>" + v_ggul.level+ "</td>";
+        v_tblStr += "<td><input type=checkbox name=nm_del value=" + v_ggul.pid + " ></td>";
+        v_tblStr += "</tr>"; 
+    }
+    v_tblStr += "</table><br><br>";
+    
+    // 페이지 넘버 화면에 출력해보기
+    // 11페이지가 안 나오는 이유를 찾으세요
+    // 힌토 11페이지 글은 10개가 안 됨
+    for(var i=1; i<=v_pageGasu; i++) {
+        if(i == v_pageNum) {
+            v_tblStr += "<a class=active href='list.html?pageNum=" + i + "' >" + i + "</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp";
+        } else {
+            v_tblStr += "<a href='list.html?pageNum=" + i + "' >" + i + "</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp";
+        }
+    }
+
+    v_tblStr += "<hr><a href=write.html>새글쓰기</a>";
+    v_tblStr += "<input id=id_del type=button value='선택 삭제'>";
+
+    v_disp.innerHTML = v_tblStr; //문서에 먼저 집어넣기  **순서(Sequence)에 의해 프로그램이 굉장히 많은 영향을 바더!!
+
+    var v_delBtn = document.querySelector("#id_del");
+    var v_delBoxs = document.querySelectorAll("input[name=nm_del]");
+    
+    function f_del() {
+        // 체크된 체크박스의 value값 가져오기
+        var v_checkedVals = [];  // 빈 배열
+        for(var i=0; i < v_delBoxs.length; i++){
+            if(v_delBoxs[i].checked){
+                v_checkedVals.push(v_delBoxs[i].value);
+            }
+        }
+        // alert(v_checkedVals); // 결과 눈으로 확인!
+
+        // 해당하는 값 배열에서 지우기
+        for(var i=0; i<v_checkedVals.length; i++) {
+            for(var j=0; i<v_dataArr.length; j++) {
+                if(v_dataArr[j].pid == v_checkedVals[i]) {
+                    v_dataArr.splice(j,1); // 1개 지우기
+                    break;
+                }
+            }
+        }
+        console.log(v_dataArr); // 눈으로 확인~
+        // v_dataArr는 메모리상의 변수라서, 실제 localStorage에서는 안 지워져 있으므로,
+        // localStorage에 덮어쓰기로 저장
+        localStorage.setItem(v_tblName, JSON.stringify(v_dataArr));
+        
+        alert("삭제 완료~~")
+        // 화면이 안 고쳐져 있어서, 화면을 새로 불러와야 함!
+   //     location.replace("list.html");
+        location.replace("list.html?pageNum="+v_pageNum); // 페이지 수까지 넘기고 싶으면 이렇게
+
+    }
+    v_delBtn.addEventListener("click",f_del);
+    
+    
+    function f_over(p_this) {
+        p_this.style.backgroundColor = "black";
+        p_this.style.color = "pink";
+    }
+
+    function f_out(p_this) {
+        p_this.style.backgroundColor = "pink";
+        p_this.style.color = "black";
+    }
+
+    // 여기서 뜬금없는 문제 제한시간 60초
+    // 마우스 올라간 TR만 배경색이 블랙, 글자색이 핑크로 되도록 하시오
+    
+    // var v_haha = document.querySelectorAll("tr"); // tr태그 전부 가져오기
+    
+    // // tr 1개 이벤트 등록 함수
+    // function f_overOut(p_tr) {
+    //     p_tr.addEventListener("mouseover",function() {
+    //         p_tr.style.backgroundColor = "black";
+    //         p_tr.style.color = "pink";
+    //     });
+    //     p_tr.addEventListener("mouseout",function() {
+    //         p_tr.style.backgroundColor = "white";
+    //         p_tr.style.color = "black";
+    //     });
+    // }
+
+    // for(var k=0; k<v_haha.length; k++) {
+    //     f_overOut(v_haha[k]);
+    // }
+
+    
+    
+    // for(var k=0; k<v_haha.length; k++) {
+    //     v_haha[k].addEventListener("mouseover",function(){
+    //         v_haha[k].style.backgroundColor = "black";
+    //         v_haha[k].style.color = "pink";
+    //     });
+    //     v_haha[k].addEventListener("mouseout",function(){
+    //         v_haha[k].style.backgroundColor = "white";
+    //         v_haha[k].style.color = "black";
+    // });
+    // }
+    // alert("확인: " + k);
+
+                
+    // for(var i=0; i<v_haha.length; i++) {
+    //     v_haha[i].onmouseover = function(){  // 마우스오버
+    //         v_haha[i].style.backgroundColor = "black";
+    //         v_haha[i].style.color = "pink";
+    //     }
+    //     v_haha[i].onmouseout = function(){   // 마우스아웃
+    //         v_haha[i].style.backgroundColor = "white";
+    //         v_haha[i].style.color = "black";
+    // }
+
+</script>
+</body>
+</html>

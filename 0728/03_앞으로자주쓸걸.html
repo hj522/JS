@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<script src="/js/mylib.js"></script>
+</head>
+<body>
+    <div id="id_disp"></div>
+
+    <script>
+        // 타이머와 랜덤 함수
+        // 스크립트 타이머는 정확하지 않기로 유명(대략 맞음)
+
+        // 0~1 랜덤 숫자 돌리기
+        for(var i=1; i<=100; i++) {
+            var v_ranNumber = Math.random();  //  0 <= ? < 1 ... 아직까지 0이 발생한 적은 없음........
+            id_disp.innerHTML += "<h4>" + v_ranNumber + "</h4>";
+        }
+        
+        // 만약 1~10까지 숫자를 발생시켜야 한다면
+        for(var i=1; i<=100; i++) {
+            var v_ranNumber = Math.ceil(Math.random()*10);  //  0 < ? < 10 , 올림하는 Math.ceil 사용
+            id_disp.innerHTML += "<h4>" + v_ranNumber + "</h4>";
+        }
+
+        // 만약 0~10까지 숫자를 발생시켜야 한다면
+        for(var i=1; i<=100; i++) {
+            var v_ranNumber = Math.floor(Math.random()*10);  // 내림.. 0 < ? < 10
+            id_disp.innerHTML += "<h4>" + v_ranNumber + "</h4>";
+        }
+
+
+
+
+
+        // 여기서 갑자기 문제. 65~100까지 발생시키기
+        // 힌트 65~100은 65 + (0~35) 라고 생각할 수 있다
+        for(var i=1; i<=100; i++) {
+            var v_ranNumber = Math.floor(Math.random()*36) + 65;  // 65 < ? < 100      
+            
+           id_disp.innerHTML += "<h4>" + f_ranNum(100,200) + "</h4>";
+         //  id_disp.innerHTML += "<h4>" + v_ranNumber + "</h4>";
+        }
+
+        // 좋은 개발자는 초복/말복만 있고 중복이 없어요
+        // from ? to ? 랜덤 정수를 발생시키는 함수
+
+        function f_ranNum(p_start,p_end){
+            return Math.floor(Math.random()*(p_end-p_start+1)) + p_start; // 100-65+1    + 65
+        }
+
+
+
+
+
+        // ** setTimeout(함수포인터,시간(밀리초),매개변수1,매개변수2....)
+        
+        function f_after(p_arg1,p_arg2){
+            alert("나 얼마만에 왔어요 " + p_arg1 + ": " + p_arg2);
+        }
+
+        setTimeout(f_after,2000,"효정","오늘 기운없엉?"); // 2초 뒤에 f_after 부름
+    //  setTimeout(f_after(),2000,"효정","오늘 기운없엉?"); // f_after() <- 괄호를 넣으면 바로 함수가 실행되니 주의!
+    // 함수 이름이 함수 포인터다~!~!
+        
+        alert("이게 먼저 뜨고 2초 뒤 setTimeout 뜬다.");
+        // 앞의 것이 끝나야 뒤의 것이 실행되는 것을 Synchronouse(동기) 라고 부르고
+        // 앞의 것이 실행중인데 뒤의 것이 실행되는 것은 Asynchronouse(비동기) 라고 부름
+        // 동기 vs 비동기 **AJAX할때 중요함
+
+    </script>
+</body>
+</html>

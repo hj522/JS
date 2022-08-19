@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 라디오 체크박스, 콤보박스 기능.. 잘 알아야됨 -->
+
+    <!-- 선택상자 또는 콤보박스라고 부름 -->
+    <!-- 모바일에서는 multiple을 쓰는 경우가 있어서 관심 ㅇ -->
+    <select id="id_where" multiple size="6" onchange="f_where(this)">
+        <option value="0">어디사세용</option>
+        <option value="daejeon">대전</option>
+        <option value="sejong">세종</option>
+        <option value="newyork" selected>뉴욕</option> <!-- selected: 기본 선택지를 뉴욕으로 설정 -->
+        <option value="africa">아프리카</option>
+    </select>
+<script>
+    function f_where(p_this) {    // 여기 괄호 안에는 this를 못 쓴다. this: <select> ~ </select>까지를 의미
+        alert(id_where.value);
+   //     alert(p_this.value); // 이렇게만 해줘도 선택된 value값이 나옴. 아래처럼 for문 굳이 안 돌려도 ㅇㅇ 
+
+        // p_this는 id_where와 같음
+        // select는 항상 이따위 식으로 사용되어서 쉽게 정리해버림
+
+        var v_options = p_this.options; // 객체는 참조...................
+        
+        var v_myselect = []; // 빈 배열
+        for(var i=0; i<v_options.length; i++) {
+            if(v_options[i].selected) {
+                v_myselect[v_myselect.length] = v_options[i].value;
+            }
+        }
+        alert("당신은 " + v_myselect + " 에 사시네요");
+       //         alert("당신은 " + v_options[i].value + "에 사시네요."); // 지역을 선택하면 알림창이 뜸
+       //         return;
+     //       }
+         //   console.log(i + " ->" + v_options[i].selected);  F12 창에 true,false 나옴
+        //    console.log(v_options[i].value); // 각각의 value값이 찍힌다
+   //     }
+
+ //       console.log(p_this.options[0]);
+//        alert("선택 바꾸셨나봐요? 왜요?");
+    }
+</script>
+</body>
+</html>

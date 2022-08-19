@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>열어준 창</h1>
+    <textarea id="old_text" >안녕하세요</textarea><br>
+ <!--   <input type="text" id="old_text" value="졸려?"><br> -->
+    <input type="button" value="벝은" id="old_btn" onclick="f_abc()"><br>
+
+    <input type="button" value="새창열어" onclick="f_winOpen()">
+    <input type="button" value="새창닫어" onclick="f_winClose()">
+<script>
+    function f_abc() {
+        // window와 document의 관계 -> window.document의 관계
+        v_newWin.document.querySelector("#new_text").value=
+            window.document.querySelector("#old_text").value;
+        v_newWin.document.querySelector("#new_btn").value="나 누구게";
+    }
+    
+    // 새 창 띄우기
+    var v_newWin; // 전역변수 선언
+    function f_winOpen() {
+        // 두번째 매개변수 name칸에 이름을 안 넣으면 계속 새 탭이 열린다.
+        // open은 열린 창을 나타내는 값을 리턴해줌!
+        v_newWin = window.open("03_새창.html","notap","width=300,height=300,left=300,top=300");
+        // window.open("01_유투브넣기.html","notap","width=800,height=700,left=-300,top=-500");
+    }
+    
+    function f_winClose() {
+        v_newWin.close();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #id_parent {
+        position: relative;
+        left: 250px;
+        top: 200px;
+        width: 200px;
+        height: 200px;
+        background-color: aqua;
+        border: 50px groove rgb(114, 186, 245);
+        overflow: hidden; /* 넘치는 걸 자름.. 창문,전자앨범같은효과 가능*/
+        /*  overflow: scroll; */
+    }
+    #id_child {
+        width: 200px;
+        height: 200px;
+      /*  background-image: url("../images/dh5.jpg");
+        background-size: 200px 200px;
+      /*  background-color: brown; */
+    }
+    .child {
+        position: absolute; /*부모의 왼쪽 모서리 기준*/
+        width: 817px;
+        height: 200px;
+        border: 3px solid orangered;
+    }
+    img {
+        width: 200px;
+        height: 200px;
+    }
+</style>
+</head>
+<body>
+    <h1>오늘은 8월 3일</h1>
+    <div id="id_parent">
+ <!--       부모네모<br> -->
+        <div id="id_child1" class="child">
+            <img src="../images/dh2.jpg">
+            <img src="../images/dh5.JPG">
+            <img src="../images/dh.jpg">
+            <img src="../images/dh3.jpg">
+        </div>
+        <div id="id_child2" class="child">
+            <img src="../images/c3.jpg">
+            <img src="../images/c2.jpg">
+            <img src="../images/c5.jpg">
+            <img src="../images/c6.jpg">
+        </div>
+    </div>
+<script>
+    var v_child1 = document.querySelector("#id_child1");
+    var v_child2 = document.querySelector("#id_child2");
+
+    var v_mvWidth = 10;
+    function f_move() {
+        v_child1.style.left = parseInt(v_child1.style.left) - v_mvWidth + "px";
+        v_child2.style.left = parseInt(v_child2.style.left) - v_mvWidth + "px";
+
+        if(parseInt(v_child2.style.left)==0) v_child1.style.left="820px";
+        if(parseInt(v_child1.style.left)==0) v_child2.style.left="820px";
+
+        setTimeout(f_move, 100);
+    }
+
+    // 페이지 로딩이 끝나면 자동으로 발생하는 이벤트
+    window.onload = function() { 
+        if(!v_child1.style.left) { // 스크립트로 css초기화하는 것도 잊지 맙시다
+            v_child1.style.left = "0px";
+            v_child2.style.left = "820px";
+        }
+        f_move();
+    }
+</script>
+</body>
+</html>

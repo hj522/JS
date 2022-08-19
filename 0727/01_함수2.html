@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+    <meta charset="UTF-8">
+    <script>
+        // 함수 매개변수(parameter)
+
+        /*
+            p_arg = function() {
+                alert("나는 함수다");
+            }
+        */
+
+        function f_dayoung(p_arg) {
+            alert("타입은->" + typeof(p_arg) + " 값은->" + p_arg);
+            p_arg(); // 함수 실행  --> callback 함수라고 함. 단순히 '뒤'에 불리는 함수. 
+        }
+        
+        function f_merong() {   //대박중요
+            alert("나는야~~함수라네~~~") 
+            return "오늘 민정이 힘이 없어용";
+        }
+        // 함수이름을 쓰는 것과 함수를 실행 후에 return값을 받는 것을 확실히 구분!!!!!!!!!! ***
+        // alert(f_merong());
+        f_dayoung(f_merong()); // FP가 뭡니까? => Function Pointer (함수이름)
+
+       
+        /*
+        f_dayoung(function() {
+            alert("나는 함수다");
+        })
+        */
+
+        /*
+        f_dayoung("메렁");   // 문자열 넘기기
+        f_dayoung(272);      // 숫자 넘기기
+        f_dayoung(!0);
+        f_dayoung(["흥","치","뿡","뿡뿌러뿡"]);   // 배열 넘기기
+        f_dayoung(function(){    // 함수 넘기기
+            alert("나는 함수다");
+        })
+        */
+
+    </script>

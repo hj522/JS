@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 지원은 되지만 브라우저마다 모양이 달라서 사용을 꺼리는 것이 있어요.
+        웹 디자이너들을 힘들게 하지만 밥줄이지요 -->
+
+        <!-- 보안상 스크립트는 사용자가 선택해준 파일에만 접근할 수 있음 -->
+        
+        <!-- 서버에 파일 업로드시 사용. multiple을 쓰면 파일 여러 개 선택 가능-->
+        <input type="file" value="" multiple accept=".jpg,.jpeg,.png,.gif">
+
+        <input type="date" value="" onchange="f_date(this)"> <!-- 날짜 선택창 -->
+        <input type="color" value="" onchange="f_color(this)"> <!-- 색깔 선택창 -->
+        <!-- 멀티라인 텍스트박스 -->
+        <textarea rows="30" cols="50"></textarea> <!-- 글자 쓸 수 있는 공간..그 외에도 꽤 많지만 브라우저 별로 다른 모양을 가져서 버림 받는중.. 사내 업무용 프로그램ㅋㅋ -->
+
+<script>
+    function f_color(p_this){
+        alert("당신이 선택한 컬러는 " + p_this.value);
+    }
+
+    function f_date(p_this) {
+        alert("당신이 선택한 날짜는 " + p_this.value);
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    원하는 영상을 선택하세요.<br>
+    taeyeon<input type="radio" name="nm_idol" value="" onclick="f_sel(0)">
+    aespa<input type="radio" name="nm_idol" value="" onclick="f_sel(1)">
+    itzy<input type="radio" name="nm_idol" value="" onclick="f_sel(2)">
+    stayc<input type="radio" name="nm_idol" value="" onclick="f_sel(3)">
+    
+    <select id="id_play" onchange="f_sel2()">
+        <option value="-1" selected>원하는 영상을 선택하세요.</option>
+        <option value="0">taeyeon</option>
+        <option value="1">aespa</option>
+        <option value="2">itzy</option>
+        <option value="3">stayc</option>
+    </select>
+
+    <input type="button" value="다음 영상" onclick="f_next()"><br>
+    
+    <h1>유투브 넣어용</h1>
+    <h5>구글의 정책이 동영상의 사운드는 사용자에게 불편을 줄 수 있다해서 영상 자동플레이를 하려면 사운드를 꺼야 합니다. 사운드 켜는 건 사용자 선택!</h5>
+    <script>
+
+        // 몇초?
+        function f_sel2(){
+            if(v_select.value == "-1") { // 영상아닌 선택창 누르면 제어
+                alert("선택 하시라고용~");
+                return; // 함수 종료
+            }
+           // alert(v_select.value); // 선택된 값이 넘어온다.  multiple 아닌 경우는 아주 간단
+            v_iframe.src= v_preUrl + v_mvList[v_select.value] + v_postUrl;
+        }
+
+        function f_sel(p_index) {
+            v_iframe.src= v_preUrl + v_mvList[p_index] + v_postUrl;
+        }
+
+        var v_mvList =["5ch94AaPZRQ","wEgqQtdBo_Y","tcrRXkxUj0U","Wc8ROL_Njdc"];
+        var v_preUrl = "https://www.youtube.com/embed/";
+        var v_postUrl = "?autoplay=1&mute=1";
+        var v_index = 0;
+        function f_next() {
+            // iframe 내부 접근 테스트 
+            var v_ifrmDoc = v_iframe.contentDocument;
+
+            // 요기 메세지에 주목
+            console.log("ck2: ", v_iframe.contentWindow.document); // cross-origin... 오리진이 다르면 맘대로 갖다쓸수없음
+
+            v_ifrmDoc.querySelector("#player").innerHTML="<h1>너 플레이어</h1>";
+
+            // iframe의 src 속성에 직접 값을 주기
+            v_iframe.src= v_preUrl + v_mvList[++v_index] + v_postUrl;
+            if(v_index == (v_mvList.length-1)) {
+                v_index = -1;
+            }
+        }
+
+        var v_iframe; // 전역변수로 설정
+        var v_select;
+        // 페이지 로딩 후 초기화가 필요하다면 window.onload에
+        window.onload = function() {    // 페이지 로딩이 끝나면 자동으로 실행
+            v_iframe = document.querySelector("#song");
+            v_select = document.querySelector("#id_play");
+        }
+        
+        </script>
+    <iframe id="song" width="787" height="443"
+    src="https://www.youtube.com/embed/5ch94AaPZRQ?autoplay=1&mute=1"
+    title="태연(TAEYEON)의 킬링보이스를 라이브로! - I,그대라는 시,만약에,11:11,Blue,Time Lapse,Weekend,불티,사계,Gravity,INVU,너를 그리는 시간"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+</iframe>
+</body>
+</html>

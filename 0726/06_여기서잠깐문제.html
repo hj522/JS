@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+    <meta charset="UTF-8">
+    <script>
+        var v_aaa = 36;
+        var v_bbb = 63;
+        
+        // 일반적인 swap 방법
+        var v_temp; // 옮겨 담을 temp 변수 선언
+        v_temp = v_aaa;
+        v_aaa = v_bbb;
+        v_bbb = v_temp;
+
+        alert("v_aaa=" + v_aaa + " v_bbb=" + v_bbb);
+
+        // 위 두 변수의 값을 추가 변수 선언없이 산술 연산만으로 Swap하시옹?
+        v_aaa = v_aaa + v_bbb; 
+        v_bbb = v_aaa - v_bbb; //힌트
+        v_aaa = v_aaa - v_bbb; 
+        alert("v_aaa= " + v_aaa + ", v_bbb= " + v_bbb);
+    </script>

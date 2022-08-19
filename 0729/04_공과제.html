@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #id_ball {
+        transform: skewY(45deg);
+        transform: rotateZ(45deg);
+        position: absolute;
+        top: 50px;
+        width: 100px;
+        height: 100px;
+        background-image: url("../images/c2.jpg");
+        background-size: 100px 100px;
+        border-radius: 50px 50px;
+    }
+
+    #id_bar {
+        position: absolute;
+        width: 200px;
+        left: 50px;
+        height: 30px;
+        background-color: rgb(255, 168, 209);
+        bottom: 50px;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>과제: 막대가 공을 튕겨 내기</h1>
+<h1>과제는 막대기 왼쪽 오른쪽 벽 속으로 안 들어가깅</h1>
+<div id="id_ball"></div>
+<div id="id_bar" style="left:30px"></div>
+<input type="button" value="START" onclick="f_move()">
+
+<script>
+
+    var v_ball = document.querySelector("#id_ball");
+    var v_bar = document.querySelector("#id_bar");
+    var v_mvWidth = 5;
+    var v_mvHeight = 5;
+    var v_gakdo = 0; // 공 회전 0도에서 시작
+
+    function f_move() {
+        if(!v_ball.style.left) { // 만약 inline style이 정의되어 있지 않다면
+            v_ball.style.left = "10px"; // 이 값으로 세팅한다
+            v_ball.style.top = "50px";
+        }
+    
+    v_ball.style.left = parseInt(v_ball.style.left) + v_mvWidth + "px";
+    v_ball.style.top = parseInt(v_ball.style.top) + v_mvHeight + "px";
+    v_bar.style.left = parseInt(v_bar.style.left) + v_mvWidth + "px";
+
+    v_gakdo = v_gakdo + 5;
+    v_ball.style.transform = "rotate(" + v_gakdo + "deg)";
+
+    var v_ballLeft = parseInt(v_ball.style.left);
+    var v_ballTop = parseInt(v_ball.style.top);
+    var v_ballRight = v_ballLeft + 100; // ball의 width 100
+    var v_ballBottom = v_ballTop + 100; // ball의 height 100
+    
+    var v_barLeft = parseInt(v_bar.style.left);
+    var v_barRight = v_barLeft + 200;
+
+    // 오른쪽 충돌 + 왼쪽 충돌 동시에 적용
+    if(v_ballRight > window.innerWidth || v_ballLeft < 0) {
+        v_ball.style.transform = "skewX(45deg)";
+        v_mvWidth = -v_mvWidth;
+    }
+    
+    // 상하 충돌
+    if(v_ballBottom > window.innerHeight || v_ballTop < 0) {
+        v_ball.style.transform = "skewY(45deg)";
+        v_mvHeight = -v_mvHeight; 
+    }
+
+    setTimeout(f_move, 50);
+
+    // 막대 충돌
+    if(v_ballRight > v_bar.innerWidth && v_ballLeft > v_bar.innerWidth
+        && v_ballTop > v_bar.innerWidth && v_ballBottom > v_bar.innerWidth) {
+        v_mvHeight = -v_mvHeight; 
+    }
+}
+
+
+// 막대 움직이기
+window.onkeydown = function() {
+    if(event.keyCode == 37) { 
+        v_bar.style.left = parseInt(v_bar.style.left) - 10 + "px";
+    }
+    
+    if(event.keyCode == 39) { 
+        v_bar.style.left = parseInt(v_bar.style.left) + 10 + "px";
+    }
+    
+    // 막대 벽 막기
+    if(v_barRight > window.innerWidth || v_barLeft < 0) {
+        v_mvWidth = -v_mvWidth; 
+    }
+}
+</script>
+</body>
+</html>

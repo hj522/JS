@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #heart {
+        position: absolute;
+        left:100px; top:100px;
+        width:300px;
+        height:300px;
+      /*  border:1px solid black;  */
+        overflow: hidden;
+        transform: rotate(45deg);
+     /*   transform-origin: center center; /* 회전 중심 설정 */
+     /*   transform-origin: right bottom; */
+
+    }
+    .common {
+        position:absolute;
+        border-radius: 50%; /* 모서리 둥글게 */
+        background-color: rgb(255, 0, 0);
+        width: 100%; /* 부모 기준으로 따라감 */
+        height: 100%; /* 부모 기준 */
+    }
+    #circle1 {
+        left: 150px;
+    }
+    #circle2 {
+        top: 150px;
+    }
+    #point {
+        position: absolute;
+        width:5px;
+        height:5px;
+        left:300px;
+        top:300px;
+        background-color: rgb(221, 146, 255);
+    }
+    #bar {
+        position: absolute;
+        width: 50px;
+        height: 300px;
+        background-color: rgb(7, 88, 11);
+        left:225px;
+    }
+    #wrapper {
+        width:500px;
+        height:500px;
+        position: relative;
+        left: 300px;
+        top: 300px;
+    /*    border:1px solid gray; */
+        transform-origin: center top;
+    }
+</style>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="bar"></div>
+        <div id="heart">
+            <div id="circle1" class="common"></div>
+            <div id="circle2" class="common"></div>
+        </div>
+<script>
+    // 오늘의 과제. 하트가 좌우로 45도씩만 움직이도록 한다. 왔다리갔다리
+    var v_wrapper = document.querySelector("#wrapper");
+    var v_gak = 0;
+    function f_rotate(){
+        v_gak = v_gak + 5;
+        if(v_gak>=1 && v_gak<=45) {
+            v_wrapper.style.transform = "rotate(" + v_gak + "deg)"
+        } else if(v_gak>=46 && v_gak<=90) {
+            v_wrapper.style.transform = "rotate(" + (-v_gak) + "deg)"
+        } 
+        setTimeout(f_rotate,100);
+    }
+    f_rotate(); // 함수 콜
+</script>
+</body>
+</html>

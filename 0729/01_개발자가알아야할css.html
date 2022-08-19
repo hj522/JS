@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #id_disp {
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<h1>개발자가 알아야할 CSS 그리 많지는 않다. 화면을 제어하는 display 중요</h1>
+<div id="id_disp" style="display:block;"> <!-- block은 디폴트상태-->
+<!-- <div id="id_disp" style="visibility:hidden"> --> <!-- 보이는것이감춰진다 .. 보이진 않지만 자리는 차지함. 칸은 그대로 남아있ㅇ는데 보이지 않음. 빈공간ㅇ -->
+<!-- <div id="id_disp" style="display: none"> 아예 자리도 차지하지 않고 사라짐 --> 
+    <h1>승연이는 항상 웃어요 하하하</h1>
+</div>
+    <input type="button" value="버튼" onclick="f_click()">
+<script>
+    // 스크립트로 제어하는 스타일은 해당 태그의 inline style이다... 해당 태그 내의 style만 읽어옴
+var v_disp = document.querySelector("#id_disp"); // 참조방식이 더 편하고 간결함.. v_disp라는 이름을 붙였음
+var v_colors = ["blue","red","green","black","magenta","pink"]; 
+function f_click(){
+    if(v_disp.style.display == "none"){
+        v_disp.style.display = "block";
+        return;
+    }
+    v_disp.style.display="none";
+  /*  
+    var v_ranColor = v_colors[Math.floor(Math.random()*v_colors.length)]; // 0번 블루 2번 레드 ..... 랜덤 발생
+    console.log(v_ranColor);
+    v_disp.style.color=v_ranColor; // 버튼 누를 때마다 랜덤한 색상 나옴.. 개발자툴에서 변화를 눈으로 볼 수 있음
+    document.body.style.backgroundColor=v_ranColor; // 바탕색=글자색 같이 뜨게
+    setTimeout(f_click,1000); // 어처구니 없는 재귀호출
+ */
+
+    // style 값 읽어오기
+  //  alert("ppp"+v_disp.style.backgroundColor+"ppp");
+  //  alert("qqq"+v_disp.style.color+"qqq"); 
+
+  //  alert(v_disp.style.backgroundColor);
+  // alert(v_disp.style.color);
+
+ //   alert(document.querySelector("#id_disp").style.backgroundColor); // background-color 하이픈을 뺴기로 인식해서 카멜기법 사용
+ //   alert(document.querySelector("#id_disp").style.color);
+
+    // Style 값 쓰기
+  //  v_disp.style.color=v_colors[Math.floor(Math.random()*v_colors.length)]; // 0~5 랜덤 정수 발생.. 색깔 하나 뽑아옴
+   // v_disp.style["background-color"] = "magenta"; 
+ //    v_disp.style.backgroundColor="blue";
+}
+</script>
+</body>
+</html>

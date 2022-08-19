@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <form action="01_확인.html" method="get" onsubmit="return f_submit()"> <!-- true:전송, false: 전송X -->
+        아이디 <input type="text" name="n_id" value="" required><br>
+        암호 <input type="password" name="n_pw" value="" required><br> <!-- password: text와 기능은 같지만 입력하는 글자가 안 보임-->
+        <input type="submit" value="꾸욱">
+    </form>
+<script>
+    function f_submit() {
+        if(document.forms[0].n_id.value=="roze") {
+            return true; // 전송
+        }
+        return false; // 안 전송
+    }
+</script>
+    <!-- form과 submit 사용 시 엄청 많이 하는 실수
+         submit에 onclick을 이벤트를 기술함
+        ex) <input type="submit" value="꾸욱" onclick="f_sumbit()">  -> 금지! X x xxxxx!!!!!!!!
+        
+        전송할지 안 할지 제어할 때는 form 태그의 onsubmit 이벤트를 활용~ 
+        * onsubmit: 전송 직전에 발생하는 이벤트
+    -->
+</body>
+</html>

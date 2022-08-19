@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    .child {
+        font-size: 20px;
+     /*   position:static; */ /* default값.. static은 위치를 브라우저에게 맡기겠다는 뜻*/
+        position:relative; /* static에 의해 브라우저가 자리잡힌 후에 옮기겠다는 뜻 */
+     /*   left:100px;
+        top:100px; */ /* 위를 기준으로 100px 움직여라 -> 안먹힘. 위에서 static을 썼기 때문에 */
+        position: absolute; /* absolute: 화면 왼쪽 모서리가 기준점이 됨. layer(층) 형성! */
+        border: 1px solid pink;
+    }
+    .csh {
+        left:100px;
+        top:100px;
+        background-color: tomato;
+        z-index: 100;
+    }
+    .lsy {
+        left:110px;
+        top:110px;
+        background-color: bisque;
+        z-index: 999; /* z-index가 크면 앞으로 튀어나옴 */
+    }
+    .ojk {
+        left:90px;
+        top:90px;
+        background-color: darkturquoise;
+        z-index: 80;
+    }
+    .ljh {
+        left: 300px;
+        background-color: lightgreen;
+    }
+</style>
+</head>
+<body>
+<div id="container">
+    <div class="child lsy">이승연</div>
+    <div class="child ljh">이준혁</div> 
+<!--   <div class="child ljh" style="left:50px">이준혁</div> --> <!-- .ljh은 안 먹힘!!! 해당 태그 내의 style만 읽어옴.. inline style */ -->
+    <div class="child csh">최승훈</div>
+    <div class="child ojk">오재경</div>
+</div>
+<input type="button" value="버튼이다" onclick="f_move()">
+<script>
+    var v_ljh = document.querySelectorAll(".child")[1]; // 준혁 
+    function f_move() {
+        if(!v_ljh.style.left) { // 만약 inline style로 정의되어 있지 않다면
+            v_ljh.style.left = "80px"; // 초기값 스크립트로 세팅
+        }
+        v_ljh.style.left = parseInt(v_ljh.style.left) + 10 + "px"; // 문자열을 숫자로 바꾸고 10을 더하고, 다시 문자열로 단위 붙임
+    //    alert("ppp"+v_ljh.style.left+"ppp"); //  v_ljh.style.left --> 50px이니까 알림창에 50이 뜸
+        
+    }
+//    console.log(v_ljh);
+</script>
+</body>
+</html>

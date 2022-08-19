@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Selector</title>
+<style>
+    /* CSS 선택자  */
+    /* 태그 선택자 */
+    div { /* div 태그 전부 선택 */
+        color: yellow;
+        background-color: black;
+    }
+
+    /* id 접근자 */
+    #hi {
+        font-size: 50px;
+        color: blue;
+
+    }
+
+    /* class 접근자 */
+    div.dy { /* div 태그이면서 class가 dy인 것만. 빈 공백 없으면 and로 연산 */
+        color:white;
+        background-color: magenta;
+    }
+    #merong.aaa { /* id가 merong이면서 class가 aaa인 것만 적용 */
+        font-size: 70px;
+        color: royalblue;
+
+    }
+
+</style>
+</head>
+<body>
+    <div class="dy">감자탕</div>
+    <div id="hi">삼겹살</div>
+    <div>까르보나라</div>
+    <p class="dy">이건 p태그</p>
+    <div id="merong" class="aaa">아메리카노</div> <!-- div, #merong.aaa 둘 다 적용이 됨 -->
+    <div class="dy">순두부찌개</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+    <meta charset="UTF-8">
+    <script>
+    // JSON 유틸    객체(Object) <-> 문자열(String)
+    var v_apple = {
+        name: "사과",
+        color: "red"
+    }
+    alert(typeof(v_apple));
+    console.log("체크2:",v_apple);
+
+    // 객체(★배열도 포함★ JSON만 객체라는 생각은 편견)를 문자열로 변환
+
+    /*
+        JSON.stringify -> 객체를 문자열로
+        JSON.parse -> 문자열을 객체로
+    */
+
+    var v_str = JSON.stringify(v_apple); // 문자열화.. (자바에서는 Serialize)
+    console.log("체크1: ",v_str);
+    alert("타입확인: " + typeof(v_str));
+    
+    var v_againObj = JSON.parse(v_str); // 문자열을 객체로. 편하게 쓰기 위함
+    // 단, 문자열의 표현이 정확히 객체 표현 문법에 어긋남이 없어야 함
+    console.log("비긴어게인: ",v_againObj);
+
+
+    // JSON이 약간 불친절한 부분이 있는데, 우선순위에 밀려서 현재까지 버전업을 안 해주고 있음..
+    // 현 상태에서의 해결책: 바깥쪽을 '작은 따옴표'로, 안쪽을 "큰 따옴표"로 처리 ★★★★★
+
+   // var v_hjStr = "{'name':'김효정','bestFriend':'윤다영','bestEnemy':'이동민'}"; // --> 이렇게하면 오류남
+    var v_hjStr = '{"name":"김효정","bestFriend":"윤다영","bestEnemy":"이동민"}'; 
+    var v_hjObj = JSON.parse(v_hjStr); // 문자열을 객체로
+    alert(v_hjObj.bestEnemy);
+
+
+    // 배열도 객체라서 가능
+    var v_arrStr = '["김태훈","안하용",100]';
+    var v_arrObj = JSON.parse(v_arrStr); // 진짜 배열로 변환하기
+
+    alert(v_arrObj[2]); 
+    alert(v_arrObj[0]); 
+
+    </script>

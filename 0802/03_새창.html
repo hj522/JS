@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>열린 창</h1>
+    <textarea id="new_text" onkeydown="f_keyCheck()">하이하이</textarea><br>
+  <!--  <input type="text" id="new_text" value="졸려" onkeydown="f_keyCheck()"><br> -->
+    <input type="button" value="벝은" id="new_btn" onclick="f_check()">
+<script>
+    function f_keyCheck() {
+        //alert(event.keyCode); // event는 이벤트정보객체
+        if(event.keyCode == 13) { // 엔터키를 눌렀다면 
+            f_check();
+        }
+    }
+
+    var v_newTxt = document.querySelector("#new_text");
+    console.log(v_newTxt);
+    // 열린 창에서 열어준 창을 의미하는 키워드 등장,, opener
+    // 곧 여기서는 opener가 오픈. html 파일을 열고 있는 window를 가리킴
+    function f_check() {
+      console.log(v_newTxt.value);
+    //  console.log(opener.document.querySelector("#old_text"));
+      opener.document.querySelector("#old_text").value = v_newTxt.value;
+    }
+</script>
+</body>
+</html>

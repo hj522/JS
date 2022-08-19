@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+
+   <script>
+
+   // 문자열은 중요
+
+   var v_str = "윤동기,김현석,김무건,김효정";
+   alert(v_str.length); // 문자열에 .을 찍는 순간 자동으로 String(Wrapper) 객체로 바뀐다. 
+   alert(v_str.indexOf("김현석"));
+   alert(v_str.indexOf("김현석",10)); // 인덱스 10부터 찾으라는 뜻. 못 찾으면 -1 출력
+   var v_replace= v_str.replace("김무건","배트맨");
+  // v_str= v_str.replace("김무건","배트맨"); // 원본까지 바꾸려면 이렇게 사용
+   alert(v_replace); // 김무건 -> 배트맨...  replace는 새로운 문자열을 만들어서 return해준다* 주의!
+   alert(v_str); // 원본은 바뀌지 않음
+
+   var v_split = v_str.split(""); // *split은 배열로 return해줌
+  // alert(v_split[0]); //? 김무건
+   alert(v_split);
+
+   var v_split = v_str.split("건,"); 
+   alert(v_split[0]); //? 건, 앞뒤로 나뉘어서 ~~김무 까지가 배열 1번, 김효정이 1번
+
+
+   // alert(v.str.substr(1,2)); // 
+
+   var v_trim= "       흥치뿡      ";
+   alert("앞" + v_trim + "뒤");
+   alert("앞" + v_trim.trim() + "뒤"); // 스페이스바 공백 제거할 때 trim 사용
+
+
+   var v_attention="주의요망";
+   alert(v_attention[2]); // 읽을 때 배열식 접근이 가능. '요' 출력
+   v_attention[2] = "빵"; // 이거 안됨. 기본(원시)타입 immortal(불멸)
+   alert(v_attention); // 주의요망 뜸... 
+   </script>

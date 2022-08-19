@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+
+* { /* 모든 것이라는 뜻 */
+        background-color: deepskyblue;
+    }
+
+    /* 자식 선택자 꺽새'>' */
+    /* 스페이스를 하면 자식 포함해서 자식의 자식.. 그 자식들 모두 포함 */
+    #ydg.ggg {   /* id가 ydg이면서 class가 ggg인 것.. 자식후손 상관x */
+        background-color: greenyellow;
+        font-size: 40px;
+        border: 1px solid brown;  /* 축약 기법 */
+    }
+    div,p { /* 여러 개 선택은 , */
+        color:blueviolet
+    }
+</style>
+</head>
+<body>
+    <!-- 들여쓰기(indentation) 중요! 
+         부모 자식 관계가 잘 보이도록...^^ 이거 안 하면 회사 가서 욕 먹음 -->
+    <div id="ydg">
+        <div class="ggg">자식1</div>
+        <div class="ggg">자식2
+            <div class="ggg">후손1</div>
+            <div class="ggg">후손2</div>
+            <div class="ggg">후손3</div>
+        </div>
+        <div class="ggg">자식3</div>
+    </div>
+    <p> 하나 빼먹었넹</p>
+</body>
+</html>

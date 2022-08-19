@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #kgs {
+        position: absolute; /* position:static 기본값- 안 움직임. 브라우저 권한*/
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        background-image: url("../images/c6.jpg");
+        background-size: 50px 50px;
+    }
+    #id_fix {
+ /*       position:fixed; /* 고정 기능! 디자이너들의 요구로 나중에 추가된 걸로 알려짐 */
+        width: 100%;
+        height: 20vh;
+        left:0px;
+        top:20px;
+        background-color: black;
+        color:yellow;
+    }
+</style>
+</head>
+<body>
+<div id="kgs" onmousedown="f_down()" onmouseup="f_up()">김강산</div>
+<script>
+
+    function f_down() {
+        var v_kgs = document.querySelector("#kgs");
+        window.addEventListener("mousedown", function() {
+            v_kgs.style.left = event.clientX + "px";
+            v_kgs.style.top = event.clientY + "px";
+        })
+    }
+
+    function f_up() {
+        var v_kgs = document.querySelector("#kgs");
+        window.addEventListener("mouseup", function() {
+            v_kgs.style.left = event.clientX + "px"; // 꼭 단위를 붙여줘야 한다.
+            v_kgs.style.top = event.clientY + "px";
+      }) 
+}
+            /*
+            // console.log("마우스 x좌표",event.clientX);
+            // console.log("마우스 y좌표",event.clientY);
+            // console.log("==================================");
+            // */
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    /* 레이아웃 잡을 때 항상 border 속성을 활용한다. 눈에 보여야 생각이 이어짐 */
+    div { 
+        display: inline-block; /* div는 dafault가 block이라 옆자리에 아무것도 올 수 없다. inline-block은 가능 */
+        width: 200px;
+        height: 300px;
+        border: 1px solid black;
+    }
+</style>
+</head>
+<body> <!-- table>tr*4>td*4 --> 
+    <!-- div#wrapper>div.fbi*4>img -->
+    <div id="container" style="width:500px;">
+        <div class="kjw">로제</div>
+        <div class="kjw">제니</div>
+        <div class="kjw">지수</div>
+        <div class="kjw">리사</div>
+    </div>
+</body>
+</html>

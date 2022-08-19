@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #id_disp {
+        border:1px solid pink;
+    }
+</style>
+</head>
+<body>
+<div id="id_disp"></div>
+<input type="file" id="id_file" value="" multiple accept=".jpg,.png,.gif"> <!-- 첨부파일 선택 창 -->
+<script>
+    // 플리커(사진 전문 사이트)
+    //https://www.flickr.com/services/feeds/photos_public.gne?tags=shiba&format=json
+    
+    // 여러 파일 선택 시, 화면에 전부 뜨게 하기
+    // 비동기 개념이 들어가 있어서 생각보다 어려움
+    
+    function jsonFlickrFeed(p_arg){
+        console.log(p_arg);
+    }
+    
+    jsonFlickrFeed({
+        name:"효정 짜앙"
+    })
+
+    var v_fileBtn = document.querySelector("#id_file");
+    var v_disp = document.querySelector("#id_disp");
+    v_fileBtn.onchange =  function(){
+        console.log(v_fileBtn.files[0].name); // 낯선 속성 files 
+        var v_file = v_fileBtn.files[0]; // 현재는 file 1개만 선택했으니까
+        var v_fileReader = new FileReader(); // 파일 읽어줌
+        //   v_fileReader.readAsText(); // 텍스트 읽기
+        
+        v_fileReader.onload = function() { // 다 읽었을 때 할 일을 먼저 지정
+            console.log(v_fileReader.result)
+            // 읽은 내용을 result라는 속성에 가지고 있음
+            var v_img = document.createElement("img"); // img태그 생성
+            v_img.src = v_fileReader.result;
+            v_img.setAttribute("height", "200");
+            // 여기서 뜬금없이 30초 문제. 이미지가 1개로 유지되도록 하시오
+            v_disp.innerHTML=""; // 기존에 선택됐던 파일(이미지..)을 비워버림. 새로운 파일 추가 전에
+            v_disp.appendChild(v_img);
+        }
+        v_fileReader.readAsDataURL(v_file); // 링크 읽기
+}
+</script>
+</body>
+</html>

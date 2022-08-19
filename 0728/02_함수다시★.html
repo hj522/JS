@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+    <meta charset="UTF-8">
+    <body>
+        <input type="button" value="눌러방" onclick="f_click()"> <!-- 여기엔 () 괄호를 꼭 붙여야함-->
+    </body>
+    
+    <script>
+        // 매개변수(parameter, argument 등..)를 받을 수 있음
+        function f_dayoung(p_arg) { // 함수의 매개변수는 변수 선언 없이 이름만!
+            p_arg(); //함수 실행.. callback 함수! f_dayoung 함수가 먼저 불린 다음 p_arg();가 불림 
+            alert(p_arg()); //alert로 감싸면 'ㅋㅋ'실행.. 
+            alert(p_arg);
+            alert(p_arg[1]);
+        }
+        
+        
+        var f_callback = function() {
+            alert("ㅋㅋ"); 
+            return "룰루"; 
+        }
+        f_dayoung(f_callback); // 이렇게 쓰는 방식도 있다. **함수 이름(FP Function Pointer)만 써야됨!!!!! f_callback() <- 괄호를 붙이면 X 
+     // f_dayoung(f_callback())  -> 먼저 f_callback 함수가 실행되고, 실행결과("룰루")가 실행됨
+
+
+        f_dayoung(function() {
+            alert("ㅋㅋ"); //함수내용이 그대로나옴
+            //항상 return이 생략된 상태
+            return; // -> return 값을 설정 안해서 undefined가 뜸
+        });
+
+
+        f_dayoung(["배열","이야"]);  // 데이터 타입에 따라 위의 alert 결정
+
+    </script>

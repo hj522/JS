@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>디지털 시계 만들기</title>
+<style>
+    #id_clock {
+        text-align: center;
+        color: yellow;
+        background-color: black;
+        font-size: 50px;
+    }
+</style>
+</head>
+<body>
+    <div id="id_clock" class="kgb">00:00:00</div>
+    <script>
+
+    // // 관례상 id값을 직접 쓰는 것은 샘플코드 수준에서만 사용하길 권장
+    // // id_clock <- 이렇게 직접 쓰면 혼날지도 모름...
+    //     var v_clock1 = document.getElementById("id_clock"); // id로 접근
+    //     console.log(v_clock1);
+    //     var v_clock2 = document.getElementsByClassName("kgb")[0]; // class로 접근..   element's' >> 되돌려주는 값이 배열일때
+    //     console.log(v_clock2[0]);
+    //     var v_clock2 = document.getElementsByTagName("div");
+    //     // 추세가 이렇게 구분해서 쓰는 것을 별로 좋아하지 않음...
+    //     // document.querySelector 를 애용하도록 하자~~~
+
+
+    // 스크립트에서 현재 날짜 읽어오기
+    // 오늘의 과제는 setTimeout을 이용해서 1초마다 시계값이 업데이트 되도록 합니다
+    // 형식은 24시간 기준, 자릿수 두 자리
+    // 힌트는 재귀호출
+
+    function f_clock() {
+
+        var v_today = new Date();
+
+        var v_year = v_today.getFullYear(); // 년
+        var v_month = v_today.getMonth(); // 월   
+        var v_date = v_today.getDate(); // 일
+
+    
+        var v_hour = v_today.getHours(); // ㅅㅣ
+        if(v_hour < 10) {
+            v_hour = "0" + v_hour; // 00 두 자리 만들기
+        }
+
+        var v_min = v_today.getMinutes();  // 분
+        if(v_min < 10) {
+            v_min = "0" + v_min; // 00 두 자리 만들기
+        }
+
+        var v_secs = v_today.getSeconds();  // 초
+        if(v_secs < 10) {
+            v_secs = "0" + v_secs; // 00 두 자리 만들기
+        }
+
+        id_clock.innerHTML = v_hour + ":" + v_min + ":" + v_secs;
+        setTimeout(f_clock,1000); // 재귀호출.. 내가 날 불러와 
+    }
+    
+    f_clock();
+
+
+    ///////////////////////////////////////////////////////
+
+
+    // for문 대신 재귀호출을 이용해서 1 ~ 특정숫자까지의 합 구하기
+    // **종료 시점이 중요!
+    function f_sum(N) {
+        if(N == 1) {
+            return 1;
+        }
+   //     return N + f_sum(N-1);
+        return N * f_sum(N-1); // factorial ...
+    }
+
+    // 먼저 확인
+    alert(f_sum(10));
+
+</script>
+</body>
+</html>

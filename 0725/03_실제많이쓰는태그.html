@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!-- 개발자들이 즐겨 쓰는 태그 순수한 용도는 줄 맞추기가 핵심 Needs -->
+    <!-- 빨간색으로 속성 표시가 되면 쓰지 않는 것을 권장한다는 의미 -->
+
+    <table border="2px">
+        <tr><th>이름(테이블헤더)</th><th>나이</th><th>th 1개추가</th></tr> <!-- tr: table row / td: table data / th: table header -->
+        <tr><td>테이블데이터</td><td>내용</td><td rowspan="3">rowspan="3"</td></tr>
+        <tr><td>커비</td><td rowspan="2">100살</td></tr> <!-- rowspan: 위아래로.. 2칸차지 -->
+        <tr><td>피카츄</td>
+        <!-- tr과 td 사이에 글 쓰면 ㄴㄴ.. 글씨가 테이블 밖으로 빠져나간다 -->
+
+        <tr>
+            <td><img src="./images/커비.jpg" width="200" height="200"</td>
+            <td>cute</td>
+        </tr>
+
+        <tr> <!-- colspan: 혼자서 2칸을 차지 -->
+            <td colspan="2"><img src="./images/커비.jpg" width="200" height="200"</td>
+        </tr>
+
+
+    </table>
+
+    <!-- 그림 넣기 -->
+    <!-- alt는 alternative(대체글자) 이미지가 지원되지 않는 브라우저에서 글자로 대체-->
+    <!-- Tag 안에 쓴 src alt 같은 값들을 속성(attribute)라고 부른다 -->
+    <img src="./images/커비.jpg" alt="커비그림1"><br>
+    <img src="./images/커비.jpg" width="300" height="300"<br>
+    <img src="./images/커비2.jpg" alt="커비그림2" width="300" height="300"><br>
+    <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20220622_299%2F1655873306740QSe2v_JPEG%2F102806_9.jpg&type=sc960_832" alt="거의 쓸 일 없음">
+    <br>
+
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>preventDefault, stopPropagation 2개 꼭 기억하기</h1>
+    <a href="../images/c5.jpg" onclick="f_aa()">네버</a>
+    <a href="../images/c5.jpg" download="자동으로저장됨.jpg">네버</a>
+<script>
+    function f_aa(){
+        event.preventDefault(); // 기본 장착 이벤트 기능(링크타고가는것) 막기!! 중요
+        alert("클릭하쇼");
+    }
+</script>
+</body>
+</html>

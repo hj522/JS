@@ -1,0 +1,46 @@
+ /* 보통 전체를 감싸는 div를 wrapper container라는 id나
+       class를 주는 것이 관례!
+       
+       외부 stylesheet 파일.. 불러다 쓸 수 있음 */
+    
+       * {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    div {
+        border: 3px solid palevioletred;
+    }
+
+    /*자식한테 퍼센트를 주면 부모 기준으로 먹음 ?(???) */
+    #wrapper { 
+        width: 98vw; /* viewport width */
+        height: 98vh; /* viewport height */
+        border: 5px solid blue; /* 눈으로 보기 */
+    }
+
+    #header {
+        height:25%;
+    }
+
+    #middle {
+        height: 50%;
+    }
+
+    #footer {
+        height: 25%;
+    }
+
+    #side,#content {
+        display: inline-block;
+    }
+
+    #side {
+        width: 40%;
+        height: 100%;
+    }
+
+    #content {
+        width: 57%;
+        height: 100%;
+    }

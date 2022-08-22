@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<!-- 자바의 배열은 데이타 형도 같아야하고, 동적확장도 안되는 제약이 있는반면,
+자바스크립트 배열은 자바의 컬렉션과 비슷하여, 이런 제약이 없어 짱 좋지만 너무 자유롭다고
+좋아하지 않는 분도 있습니다.~ㅠㅠ
+랜덤하게 발생한 숫자 20개를 가진 배열을 만드시고,
+for문을 이용해서 배열 안의 숫자 중 최소값을 (내장함수 min을 사용하지 않고)
+찾아내서 변수 minValue에 담는 프로그램을 짜봅니다.
+해결되었다면
+매개변수로 배열을 받아서, 배열속의 최소값을 리턴하는
+함수를 만들어주십시오, 함수명은 뭐든 상관없습니다. -->
+
+<script>
+
+    var v_num = []; // 빈 배열 생성
+
+    function v_min() {
+    for (var i=1; i <= 20; i++) {
+        v_num.push(Math.ceil(Math.random()*45));
+        // var v_ranNum = Math.floor(Math.random() * 45) + 1;
+        // v_num.push(v_ranNum);
+        }
+        alert("랜덤 숫자: " + v_num);
+    }
+
+    v_min();
+
+    var v_minValue = v_num[0]; // 첫번째 인덱스 값이 최소라고 가정
+    for(var i=1; i<v_num.length; i++) { // i값이 1부터 시작함에 유의
+        if(v_num[i] < v_minValue) {
+            v_minValue = v_num[i];
+        }
+    }
+    alert("최소값: " + v_minValue);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+<!-- div태그이용 height속성 늘려가면서 display 사용 -->
+<style>
+    #curtain {
+        left: 150px;
+        top: 50px;
+        width: 400px;
+        border: 20px groove rgb(255, 123, 185);
+    }
+    #content {
+        position: static;
+        width: 400px;
+        height: 700px;
+        background-color: black;
+        font-size: 25px;
+        text-align: center;
+        color: rgb(255, 251, 0);
+    }
+
+</style>
+</head>
+<body>
+    <div id="curtain" style="height: 50px">
+        <div id="content" style="visibility:hidden;"><br>공지사항<br><br><hr><br>
+            최고의 프로그래머라면<br><br><br>
+            에러메시지에 웃음이 난다<br><br><br>
+            시행착오가 즐겁다<br><br><br>
+            로그 출력은 습관이다<br><br><br>
+            컴터 NULL 사랑해</div>
+    </div>
+
+
+<script>
+     var v_curtain = document.querySelector("#curtain");
+     
+     var v_num1 = 10;
+     var v_num2 = 700;
+     var v_second = 100;
+
+    function f_long() {
+        if(!v_curtain.style.height){
+            v_curtain.style.height="50px"; // 태그에 정의되지 않았을때 강제 초기값(function 밖에 있으면 더 좋음. 상황에 의존)
+        }
+        // alert(parseInt(v_curtain.style.height))
+        v_curtain.style.height =
+            parseInt(v_curtain.style.height) + v_num1 + "px";
+        // 재귀호출로 인해 무한루핑이니 종료 조건이 필요함(특정 height값!)
+        if(parseInt(v_curtain.style.height) >= v_num2){
+            document.getElementById("content").style.visibility = 'visible';
+            return; // 종료
+        }
+        setTimeout(f_long,v_second);
+        
+    }
+    window.onload = f_long;
+    
+
+</script>
+</body>
+</html>

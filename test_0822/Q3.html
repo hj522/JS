@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<!-- 웹개발자가 디자이너만큼 CSS를 알아야하는 건 아니지만, 힘이 넘치고 사용자를 즐겁고 편하게 할
+동적 페이지를 만들기 위해서는 아래 내용 정도는 꼭 알아야 한다고 생각합니다.
+display, position, overflow, z-index, transform
+그리고 css 선택자에 대해 설명해 주세요~~ -->
+
+
+<!-- display -->
+- 화면을 제어하는 기능. 화면에 어떻게 드러나게 할지를 결정한다.
+- none / block / inline / inline-block
+- none: 화면에서 아예 사라진다. 자리 차지x
+- block: 기본적으로 갖게되는 값.. 가로 한 줄 전부 차지
+- inline: 컨텐츠를 감쌀 정도의 크기 유지
+- inline-block; inline과 block의 특성을 합친 속성
+
+<!-- position -->
+- 화면에 어떻게 배치할지 정해주는 요소
+- static, relative, absolute, sticky
+- static: 기본적으로 갖는 속성
+- relative: 원래 있어야하는 곳을 기준으로 배치
+- fixed: 말 그대로 고정된 값을 가짐
+- absolute: 가장 가까이에 포지셔닝 되어있는 부모 요소를 기준으로 배치 
+- sticky: relative와 비슷하게 작용하지만, 기준을 벗어나면 fixed와 같은 속성을 지님.
+          scroll박스를 기준으로 작용
+
+
+<!-- overflow -->
+- 넘쳐흐름.. 내용이 요소의 크기를 벗어났을 때 어떻게 보일지 처리함
+- visible, hidden, scroll, auto, initial, inherit
+- visible : 박스를 넘어가도 보여줌
+- hidden : 박스를 넘어간 부분은 보이지 않음
+- scroll : 박스를 넘어가든 넘어가지 않든 스크롤바가 나옴
+- auto : 박스를 넘어가지 않으면 스크롤바가 나오지 않고, 박스를 넘어갈 때에는 스크롤바가 나옴
+- initial : 기본값으로 설정
+- inherit : 부모 요소의 속성값을 상속받음
+
+<!-- z-index -->
+- position 속성으로 배치한 요소의 z축 위치를 결정(앞/뒤)
+
+<!-- transform -->
+- x,y,z 좌표 변경을 해서 위치 조정
+- translate: 현재 위치에서 이동
+- scale: 확대 또는 축소
+- skew: 기울이기
+
+<!-- CSS 선택자 -->
+- CSS 선택자란 CSS를 작성할 때 HTML의 어떤 요소를 선택할 것인지를 정하는 것
+- 태그선택자
+    태그를 선택하여 CSS 스타일을 지정해줄 수 있음
+    보통 HTML에 작성 된 특정 태그 모두를 수정해줄 수 있음
+- 아이디 선택자
+    ID는 유일한 값이기 때문에 특정 요소에게 CSS스타일을 지정하고 싶을때 사용
+    아이디값에 '#'을 붙혀서 작성
+- 클래스 선택자
+    ID선택자와 유사하게 지정된 class명으로 CSS스타일을 지정
+    클래스명 앞에 '.' 마침표를 붙여서 작성
+- 속성선택자
+    속성의 존재 여부나 그 값을 활용하여 요소의 스타일을 지정
+    속성이 존재하면 해당속성에 스타일을 부여할 수 있음
+- 가상클래스 선택자
+    선택자 뒤에 가상이벤트를 붙이면 특정요소의 스타일을 부여할 수 있음
+- 가상 요소 선택자
+    말 그대로 가상의 요소를 만들어서 사용
+
+* (모든 것)
+tag
+#id명
+.class명
+>: 자손
+스페이스바: 자손포함후손
+,: 여러개선택
+#가.나: and
+
+</body>
+</html>

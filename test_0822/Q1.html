@@ -15,42 +15,48 @@
 편의상 만약 결과값이 2개인 경우(거리를 받아서 시간을 리턴) 최초값을 리턴하는 것으로 합니다. -->
 
 <script>
-        function f_sum(p_num) {
-            var sum =0;
-            for(var i=1; i<=p_num; i++) {
-                sum += i;
-            }
-            alert("1에서" + p_num + "까지 합은 " + sum + "입니다.");
-        }
-        f_sum(10);
 
         // 시간         1   2   3   4  5  6  7  8
         // 움직임       3  -2  3  -2  3  -2  3  -2
         // 결과거리     3   1  4   2  5   3  6  4
 
+
         // 시간을 매개변수로 받아서 올라간 거리를 리턴하는 함수
         function f_retDistance(p_sec) {
-            var sum = 0;
-            for(var i=1; i<=p_sec; i++) {
-                if ()
+            var v_distance = 0; // 총 간 거리. 초기값 0
+            for(i=1; i<=p_sec; i++) {
+                v_distance += (i%2)? 3: -2;
+                /*
+                if (i % 2) {     // 0=true (??)
+                    v_distance += 3; // 0이 아니면
+                } else {
+                    v_distance += -2; // 0이면
+                }*/
             }
-            return (p_sec*2) + "cm를 올라갔습니다.";
+            return v_distance;
         }
+
+        f_reDistance(3); 
+
 
         // 거리를 매개변수로 받아서 걸리는 시간을 리턴하는 함수
         function f_retSeconds(p_dist) {
 
-            var i=1;
+        // 개발자는 맞다/틀리다, 고객의 요청에 trade-off (타협)
+            var p_sec=1;
             for(;"언제 같아질지 몰라서";) {
-                f_retDistance();
-                i++;
+                if(p_dist == f_retDistance(p_sec)) {
+                    return p_sec;
+                };
+            // return하는게 거리, 매개변수로 받은 것도 거리
+                p_sec++;
             }
             return (p_dist/2) + "초 시간이 걸립니다.";
 
         }
 
-        alert(f_retDistance(3)) // 3초동안 올라간 거리
-        alert(f_retDistance(10)) // 10cm 올라가는데 걸리는 시간
+        // alert(f_retDistance(3)) // 3초동안 올라간 거리
+        // alert(f_retDistance(10)) // 10cm 올라가는데 걸리는 시간
 
 </script>
 </body>

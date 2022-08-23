@@ -25,7 +25,7 @@ for문을 이용해서 배열 안의 숫자 중 최소값을 (내장함수 min�
         // var v_ranNum = Math.floor(Math.random() * 45) + 1;
         // v_num.push(v_ranNum);
         }
-        alert("랜덤 숫자: " + v_num);
+ //       alert("랜덤 숫자: " + v_num);
     }
 
     v_min();
@@ -36,7 +36,20 @@ for문을 이용해서 배열 안의 숫자 중 최소값을 (내장함수 min�
             v_minValue = v_num[i];
         }
     }
-    alert("최소값: " + v_minValue);
+//    alert("최소값: " + v_minValue);
+    
+    function f_minVal(p_arr) {
+        var v_minValue = v_num[0];
+        for(var i=1; i<v_num.length; i++) { // i값이 1부터 시작함에 유의
+            if(v_num[i] < v_minValue) {
+                v_minValue = v_num[i];
+        }
+    }
+    return v_minValue; // 찾은 최소값 리턴
+}
+
+alert("배열: " + v_num); // 생성된 배열 눈으로 확인
+alert(f_minVal(v_num)); // 배열 속 최소값 눈으로 확인
 
 </script>
 </body>

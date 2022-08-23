@@ -21,6 +21,7 @@ height속성 및 background-color 이용
     </style>
 </head>
 <body>
+    <!-- 요런 스타일도 잘 알아둡니다. 자주 쓰임!!! -->
     <div id="id_disp"></div>
     <input type="text" value="80,100,56,120,180,30,40,120,160">
     <input type="button" value="그리기" onclick="f_draw()">
@@ -32,176 +33,28 @@ var v_disp = document.querySelector("#id_disp");
 
         // 막대 1개
         v_disp.innerHTML = ""; // 클리어 
-        var v_bar = document.createElement("div");
-        v_bar.style.position="absolute";
-        v_bar.style.top = 300 - v_dataArr[0] + "px";
-        v_bar.style.left = "10px"; 
-        v_bar.style.height = v_dataArr[0] + "px";
-        v_bar.style.width = "30px";
-        v_bar.style.backgroundColor = "orange";
-        v_disp.appendChild(v_bar);
+        
+        for(var i=0; i<v_dataArr.length; i++) {
+            var v_bar = document.createElement("div");
+            v_bar.style.position="absolute";
+            v_bar.style.top = 300 - v_dataArr[i] + "px";
+            v_bar.style.left = i*43 + "px"; 
+            v_bar.style.height = v_dataArr[i] + "px";
+            v_bar.style.width = "30px";
+            v_bar.style.backgroundColor = "orange";
+            v_disp.appendChild(v_bar);
 
-        //값 
-        var v_label = document.createElement("div");
-        v_label.innerHTML = v_dataArr[0];
-        v_label.style.position ="absolute";
-        v_label.style.top = parseInt(v_bar.style.top) - 20 + "px";
-        v_label.style.left = "10px"; 
-        v_disp.appendChild(v_label);
-
+        //값 라벨 
+            var v_label = document.createElement("div");
+            v_label.innerHTML = v_dataArr[i];
+            v_label.style.position ="absolute";
+            v_label.style.top = parseInt(v_bar.style.top) - 20 + "px";
+            v_label.style.left = i*43 + "px"; 
+            v_label.style.backgroundColor="black";
+            v_label.style.color="yellow";
+            v_disp.appendChild(v_label);
+        }
     }
-
-        // // 막대 2
-        // v_disp.innerHTML = ""; // 클리어
-        // var v_bar = document.createElement("div");
-        // v_bar.style.position="absolute";
-        // v_bar.style.top = 300 - v_dataArr[1] + "px";
-        // v_bar.style.left = "30px";
-        // v_bar.style.height = v_dataArr[1] + "px";
-        // v_bar.style.width = "30px";
-        // v_bar.style.backgroundColor = "red";
-        // v_disp.appendChild(v_bar);
-
-        // // 값
-        // var v_label = document.createElement("div");
-        // v_label.innerHTML = v_dataArr[1];
-        // v_label.style.position = "absolute";
-        // v_label.style.top = parseInt(v_bar.style.top) - 20 + "px";
-        // v_label.style.left = "30px";
-        // v_disp.appendChild(v_label);
-
-        // // 막대 3
-        // v_disp.innerHTML = ""; // 클리어
-        // var v_bar = document.createElement("div");
-        // v_bar.style.position="absolute";
-        // v_bar.style.top = 300 - v_dataArr[2] + "px";
-        // v_bar.style.left = "60px";
-        // v_bar.style.height = v_dataArr[2] + "px";
-        // v_bar.style.width = "30px";
-        // v_bar.style.backgroundColor = "red";
-        // v_disp.appendChild(v_bar);
-
-        // // 값
-        // var v_label = document.createElement("div");
-        // v_label.innerHTML = v_dataArr[2];
-        // v_label.style.position = "absolute";
-        // v_label.style.top = parseInt(v_bar.style.top) - 20 + "px";
-        // v_label.style.left = "60px";
-        // v_disp.appendChild(v_label);
-
-        // // 막대 4
-        // v_disp.innerHTML = ""; // 클리어
-        // var v_bar = document.createElement("div");
-        // v_bar.style.position="absolute";
-        // v_bar.style.top = 300 - v_dataArr[3] + "px";
-        // v_bar.style.left = "90px";
-        // v_bar.style.height = v_dataArr[3] + "px";
-        // v_bar.style.width = "30px";
-        // v_bar.style.backgroundColor = "red";
-        // v_disp.appendChild(v_bar);
-
-        // // 값
-        // var v_label = document.createElement("div");
-        // v_label.innerHTML = v_dataArr[3];
-        // v_label.style.position = "absolute";
-        // v_label.style.top = parseInt(v_bar.style.top) - 20 + "px";
-        // v_label.style.left = "90px";
-        // v_disp.appendChild(v_label);
-
-        // // 막대 5
-        // v_disp.innerHTML = ""; // 클리어
-        // var v_bar = document.createElement("div");
-        // v_bar.style.position="absolute";
-        // v_bar.style.top = 300 - v_dataArr[4] + "px";
-        // v_bar.style.left = "120px";
-        // v_bar.style.height = v_dataArr[4] + "px";
-        // v_bar.style.width = "30px";
-        // v_bar.style.backgroundColor = "red";
-        // v_disp.appendChild(v_bar);
-
-        // // 값
-        // var v_label = document.createElement("div");
-        // v_label.innerHTML = v_dataArr[4];
-        // v_label.style.position = "absolute";
-        // v_label.style.top = parseInt(v_bar.style.top) - 20 + "px";
-        // v_label.style.left = "120px";
-        // v_disp.appendChild(v_label);
-
-        // // 막대 6
-        // v_disp.innerHTML = ""; // 클리어
-        // var v_bar = document.createElement("div");
-        // v_bar.style.position="absolute";
-        // v_bar.style.top = 300 - v_dataArr[5] + "px";
-        // v_bar.style.left = "150px";
-        // v_bar.style.height = v_dataArr[5] + "px";
-        // v_bar.style.width = "30px";
-        // v_bar.style.backgroundColor = "red";
-        // v_disp.appendChild(v_bar);
-
-        // // 값
-        // var v_label = document.createElement("div");
-        // v_label.innerHTML = v_dataArr[5];
-        // v_label.style.position = "absolute";
-        // v_label.style.top = parseInt(v_bar.style.top) - 20 + "px";
-        // v_label.style.left = "150px";
-        // v_disp.appendChild(v_label);
-
-        // // 막대 7
-        // v_disp.innerHTML = ""; // 클리어
-        // var v_bar = document.createElement("div");
-        // v_bar.style.position="absolute";
-        // v_bar.style.top = 300 - v_dataArr[6] + "px";
-        // v_bar.style.left = "180px";
-        // v_bar.style.height = v_dataArr[6] + "px";
-        // v_bar.style.width = "30px";
-        // v_bar.style.backgroundColor = "red";
-        // v_disp.appendChild(v_bar);
-
-        // // 값
-        // var v_label = document.createElement("div");
-        // v_label.innerHTML = v_dataArr[6];
-        // v_label.style.position = "absolute";
-        // v_label.style.top = parseInt(v_bar.style.top) - 20 + "px";
-        // v_label.style.left = "180px";
-        // v_disp.appendChild(v_label);
-
-        // // 막대 8
-        // v_disp.innerHTML = ""; // 클리어
-        // var v_bar = document.createElement("div");
-        // v_bar.style.position="absolute";
-        // v_bar.style.top = 300 - v_dataArr[7] + "px";
-        // v_bar.style.left = "210px";
-        // v_bar.style.height = v_dataArr[7] + "px";
-        // v_bar.style.width = "30px";
-        // v_bar.style.backgroundColor = "red";
-        // v_disp.appendChild(v_bar);
-
-        // // 값
-        // var v_label = document.createElement("div");
-        // v_label.innerHTML = v_dataArr[7];
-        // v_label.style.position = "absolute";
-        // v_label.style.top = parseInt(v_bar.style.top) - 20 + "px";
-        // v_label.style.left = "210px";
-        // v_disp.appendChild(v_label);
-
-        // // 막대 9
-        // v_disp.innerHTML = ""; // 클리어
-        // var v_bar = document.createElement("div");
-        // v_bar.style.position="absolute";
-        // v_bar.style.top = 300 - v_dataArr[8] + "px";
-        // v_bar.style.left = "240px";
-        // v_bar.style.height = v_dataArr[8] + "px";
-        // v_bar.style.width = "30px";
-        // v_bar.style.backgroundColor = "red";
-        // v_disp.appendChild(v_bar);
-
-        // // 값
-        // var v_label = document.createElement("div");
-        // v_label.innerHTML = v_dataArr[8];
-        // v_label.style.position = "absolute";
-        // v_label.style.top = parseInt(v_bar.style.top) - 20 + "px";
-        // v_label.style.left = "240px";
-        // v_disp.appendChild(v_label);
 
 </script>
 </body>

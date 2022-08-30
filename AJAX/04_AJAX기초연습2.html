@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<div id="id_disp"></div>
+<input type="button" value="제이슨테스통" onclick="f_json()">
+<input type="button" value="테스통" onclick="f_csv()">
+<script>
+   // CSV: comma seperated value
+   // 빅데이터 파일은 CSV로 많이 보낸다. 파일 사이즈가 작음!
+   
+    var v_disp = document.querySelector("#id_disp");
+    function f_json() {
+        var v_ajax = new XMLHttpRequest();
+        v_ajax.open("get","06_merong.json","true");
+        v_ajax.onreadystatechange = function() {
+            if(v_ajax.readyState == 4 && v_ajax.status == 200) {
+           //     alert(v_ajax.responseText); // string........... 왜죠 
+                var v_arr = JSON.parse(v_ajax.responseText); // 문자열이기 때문에 배열로 바꾸기
+           //     alert(v_arr[0].alias);
+                f_test2(v_arr);
+            }
+        }
+        v_ajax.send();
+    }
+
+    // 넘어온 값을 id_disp에 table형식으로 출력하시옹
+    function f_test2(p_arr) {
+        var v_tblStr = "<table border=3>";
+       for(var i=0; i<p_arr.length; i++) {
+            v_tblStr += "<tr>";
+            v_tblStr += "<td>" + p_arr[i].name + "</td>";
+            v_tblStr += "<td>" + p_arr[i].age + "</td>";
+            v_tblStr += "<td>" + p_arr[i].alias + "</td>";
+            v_tblStr += "</tr>";
+        }
+        v_tblStr += "</table>";
+        v_disp.innerHTML = v_tblStr;
+    }
+
+    var f_csv = function() {
+        var v_ajax = new XMLHttpRequest();
+        v_ajax.open("get","05_test.csv",true);
+        v_ajax.onreadystatechange = function() {
+            if(v_ajax.readyState == 4 && v_ajax.status == 200) {
+                f_test(v_ajax.responseText);
+            }
+        }
+        v_ajax.send();
+    }
+    
+    // 여기서 벼락같은 문제. 넘어온 값을 id_disp에 table형식으로 출력하시오
+    function f_test(p_arg) {
+        var v_lines = p_arg.split("\n"); // split하면 무조건 배열 
+        var v_tblStr = "<table border=3>";
+        for(var i=0; i<v_lines.length; i++) {
+            var v_tds = v_lines[i].split(",");
+            v_tblStr += "<tr>";
+            v_tblStr += "<td>" + v_tds[0] + "</td>";
+            v_tblStr += "<td>" + v_tds[1] + "</td>";
+            v_tblStr += "<td>" + v_tds[2] + "</td>";
+            v_tblStr += "</tr>";
+            // alert(v_lines[i]);  // 한 줄 내용.. 눈으로 확인용
+        }
+        v_tblStr += "</table>";
+        v_disp.innerHTML = v_tblStr; // 완성된 문자열을 한번에 집어넣기
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // *sequence(순서) 엄청 중요! 한 줄씩 해석된다.
+        window.onload = function() {
+            alert(document.querySelector("#btn2").innerHTML); 
+        }
+    </script>
+
+    <button id="btn1">눌러1</button>
+    <button id="btn2">눌러2</button>
+<script>
+    // *on이벤트명 = function(){} vs addEventListener("이벤트명",function(){})
+
+    btn1.onclick=function() {
+        alert("메렁");
+    }
+    // 덮어씀!!
+    var v_check=1;
+    btn1.onclick=function() {
+   //     alert("안메롱");
+        // 보통 자주 불리는(1번) 함수 안에 addEventListener를 사용하면 원하지 않게 여러 번 실행되는 것을 확인할 수 있음
+        // 꼬옥 잘 구분해서 쓸 것!
+        btn2.addEventListener("click",function() {
+            alert("완존 메롱" + v_check);  // 누를 때마다 같은 이벤트를 계속 추가하게 됨. alert 횟수 증가    
+        });
+        v_check++;
+    }
+
+
+    // *레이아웃* 짤 때는 border를 사용해서 가로/세로 나누기(항상 세로 기준을 먼저 나누자)
+    // 완성되면 border는 지움
+    // static 기준으로 만들고 필요하면 relative,absolute 사용!
+
+
+</script>
+</body>
+</html>

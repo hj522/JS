@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<div id="id_disp"></div>
+<input type="button" value="아작스호출" onclick="f_ajax()">
+<script>
+    var v_disp = document.querySelector("#id_disp");
+    var v_myRoze;
+    function f_ajax(){
+        var v_ajax = new XMLHttpRequest();
+        v_ajax.onreadystatechange = function(){
+            if(v_ajax.readyState == 4 && v_ajax.status == 200){
+                v_disp.innerHTML += "<h1>" + v_ajax.responseText + "</h1>"
+                v_myRoze = v_ajax.responseText;
+             //   alert("메롱?");
+              alert(v_myRoze); // 여기에 써야 돼~~
+            }
+        }
+        v_ajax.open("get", "03_dummy.txt", true); // 관례적으로 open은 아래쪽에 쓴다
+        v_ajax.send();
+
+       // 이게 먼저 뜬다~! 아작스는 비동기
+   //     alert("완전 메롱?");
+
+  //      alart(v_myRoze); // 실수 조심.. 이렇게 하면 비동기라 undefined가 뜬다! 아직 위에것이 실행중일때 왔기 때문에
+    }
+</script>
+</body>
+</html>

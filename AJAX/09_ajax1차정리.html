@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    // 아작스 호출 방식을 일반화 시킴!
+    
+    /* 네임스페이스 그저 규모가 커지면 자꾸 나누어지게 됨(나누어야 잘 알 수 있음)
+    var kor = {};
+    kor.seoul = {};
+    kor.daejeon = {};
+    kor.seoul.sh = "서울 승훈";
+    kor.daejeon.sh = "대전 승훈";
+    */
+
+
+    var $={}; // 네임스페이스용 빈 객체 생성. 자바의 package에 해당
+    // 서울시.삼성동  , 대전시.삼성동 
+    // 콜백함수는 이름이 없는 '익명의 함수'를 사용한다. 함수의 내부에서 실행되기 때문에 이름을 붙이지 않아도 된다.
+    
+    //메소드
+    $.ajax = function(p_set) { 
+        var v_ajax = new XMLHttpRequest();
+        v_ajax.open(p_set.method,p_set.url,true); // 요기 바꾸기
+        v_ajax.onreadystatechange = function() {
+            if(v_ajax.readyState == 4 && v_ajax.status == 200) {
+                p_set.success(v_ajax.responseText);
+            }
+        }
+        v_ajax.send();
+    } 
+// p_set은 json객체여야 사용이 가능하다
+
+    // 호출
+    $.ajax({
+        method: "get",
+        url: "03_dummy.txt",
+        success: function(p_rslt){ // v_ajax.responseText 값이 넘어왕
+            alert("다시 넘어온 값은 " + p_rslt);
+        }
+    });
+
+    // 호출
+    $.ajax({
+        method: "get",
+        url: "06_merong.json",
+        success: function(p_rslt){          // 콜백함수.. 이부분 이해 하기!!!!
+            alert("다시 넘어온 값은 " + p_rslt); 
+        }
+    });
+</script>

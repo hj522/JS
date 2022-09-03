@@ -29,4 +29,14 @@
         // 할 일 너무 짧으면 일부 이벤트를 놓칠 수 있어서, 보통 send 위에 이벤트 등록을 먼저 함!
         v_ajax.send(); // 시킨대로 하세용.
 
+
+        var v_ajax = new XMLHttpRequest();
+        v_ajax.open("get","03_dummy.txt",true);
+        v_ajax.onreadystatechange=function() {
+            if(v_ajax.readyState == 4 && v_ajax.status == 200) {
+                alert(v_ajax.responseText);
+            }
+        }
+        v_ajax.send();
+
     </script>

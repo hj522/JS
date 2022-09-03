@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="뉴스가져오기" onclick="f_check()">
+<script>
+    // Cross Origin 개념 엄청나게 중요(잊지마셈)
+    // CORS : Cross-Origin Resource Sharing
+    // 내 서버가 다른 서버에 요청해서 받아다주는,, 우회 방법
+    // 서버에 클라이언트 역할을 해줄 라이브러리가 필요 (HttpClient 많이 사용)
+    // 개념이 잘못되면 원래 안되는 일을 끝없이 무한 반복하다가 쓰러짐
+    function f_check(){
+        var v_ajax = new XMLHttpRequest();
+        v_ajax.open("get","https://news.google.com/rss/search?q=블랙핑크&hl=ko&gl=KR&ceid=KR:ko",true);
+        v_ajax.onreadystatechange = function() {
+            if(v_ajax.readyState == 4 && v_ajax.status == 200) {
+                console.log(v_ajax.responseText);
+            }
+        }
+        v_ajax.send();
+
+    }
+
+</script>
+    
+</body>
+</html>

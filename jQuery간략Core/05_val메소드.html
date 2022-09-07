@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+   <script src="./03_myQuery.js"></script>
+</head>
+<body>
+    <input type="text" id="txt1" value="흥!"><br>
+    <input type="text" id="txt2" value="칫!"><br>
+    <input type="text" id="txt3" value="뿌!"><br>
+    <input type="text" id="txt4" value="웅!"><br>
+    <div id="whathayong" class="hi" style="border:1px solid pink">무엇하용?0</div>
+    <div id="whathayong" class="hi" style="border:1px solid pink">무엇하용?1</div>
+    <div id="whathayong" class="hi" style="border:1px solid pink">무엇하용?2</div>
+    <div id="whathayong" class="hi" style="border:1px solid pink">무엇하용?3</div>
+<script>
+    // $("#whathayong").click(function(){  // js의 onclick=함수 에 해당!
+    //     alert("왜 누르쇼?");
+    // });
+
+    $(".hi").on("click",function(){    // js의 addEventListener에 해당!
+        alert("메로로로로롤로ㅗㄹ로로로로롤ㅇ");
+    }).html(function(p_inx,p_html){
+        if(p_html == "무엇하용?1") {
+            return "암것도 안하용"; 
+        }
+        return p_html;  // 나머지는 그대로
+    })
+
+    // $(".hi").empty(); // 무엇하용 전부 없어짐
+    $(".hi").empty(); // 1번만 없어짐 
+
+    // 개발자들이 value속성을 자주 다루다 보니,
+    // jQuery에는 val() 이라는 value속성만을 다루는 메소드가 존재함
+    // html() 메소드와 사용법이 동일
+  //  alert($("input").val()); // 읽기.   가장 첫번째 value값
+  //  alert($("#txt3").val()); // 읽기.
+  //  $("input").val("희희"); // 쓰기.   value값 전부 희희 로 바뀜
+    $("input").val(function(p_index,p_value){  //매개변수가 콜백함수일때...
+        if(p_value.indexOf("뿌") != -1){ // 뿌가 있으면 뿌뿌루 값으로 변경
+            return "뿌뿌루. 어려운듯 보이지만 사실은 몇 줄만 이해하면 끝!";
+        }
+        return p_value; // 나머지는 원래 가진 value값대로 리턴
+    }).attr("type","radio").val("모두 다 사랑하리");
+</script>
+</body>
+</html>

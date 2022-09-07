@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+    <meta charset="UTF-8">
+    <script>
+
+        var v_num = 100000000; // 큰 숫자, 원시타입(속성과 메소드가 없음);
+        alert(typeof(v_num)); // number
+        alert(v_num.toLocaleString()); // 자동으로 Wrapper Class로 바뀜(Number)
+        
+        // 콜백함수
+        // 자신의 손이 기억하게 하지 않으면 계쏙 헷갈림
+        // 복사와 참조**
+
+        function f_check(p_cb) {
+     //       console.log("확인",p_cb()); // 리턴한 값이 없으면 undefined
+            console.log("확인",p_cb(" 로제의 닉네임은 로지", " 제니는 지드래곤과 작별"));
+        }
+        
+        
+        /*
+        // 매개변수 자리에 함수 선언이 들어가있음
+        f_check(function(roze,jenni){ // 매개변수 2개 다루기
+            alert("나는 콜백" + roze + "랑" + jenni + "ㅋㅋ");
+            //   return; 함수 끝에 항상 생략되어 있엉
+            return "하잉";
+        });
+        */
+       
+       // 위를 이렇게도 쓴다
+       var v_func = function(roze,jenny) {
+           alert("나는 콜백" + roze + "랑" + jenni + "ㅋㅋ");
+           return "하잉";
+        }
+        f_check(v_func);
+        
+        // p_cb = function(){alert("나는 콜백");}
+    </script>

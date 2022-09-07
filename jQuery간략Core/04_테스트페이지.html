@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<script src="./03_myQuery.js"></script>
+</head>
+<body>
+    <input type="text" name="안메롱0" id="아이디0" value="메롱받고메롱더0">
+    <input type="text" name="안메롱1" id="아이디1" value="메롱받고메롱더1">
+    <input type="text" name="안메롱2" id="아이디2" value="메롱받고메롱더2">
+    <div id="dv1" class="blackpink">하이룽 로제</div>
+    <div id="dv2" class="blackpink">하이룽 제니</div>
+    <div id="dv3" class="blackpink">하이룽 리사</div>
+    <div id="dv4" class="blackpink">하이룽 민정</div>
+<script>
+    console.log($(".blackpink").html().substring(2));
+
+    /*
+    $(".blackpink").attr("class","bangtan")
+                    .html(function(p_inx,p_str){
+                        if(p_inx == 1) return "뷔와 제니";
+                        return p_str; // 원래 문자열
+                    })
+                    .html(function(p_inx,p_str){
+                        if(p_inx == 0) return p_str + "만만세"; 
+                        return p_str;
+                    })
+                    .attr("id",function(p_inx,p_attr){
+                        if(p_inx == 3) return "merong";
+                        return p_attr;
+                    });
+    */
+
+    // alert($("input").attr("name")); // 맨 처음값만 리턴(안메롱0)
+    // alert($("input").attr("name")); // 아이디1 출력
+    // alert($("input").attr("type")); // text 출력
+ //   $("input").attr("value","음하하하");
+ //   $("input").attr("type","checkbox");
+
+ /*
+    $("input").attr("type",function(p_index,p_attr){
+        console.log("인덱스 : 속성값",p_index,p_attr); // 자주 눈으로 확인
+        if(p_index == 1){
+            return "checkbox";
+        }
+        return p_attr; // this[p_attr]; 
+      });
+*/
+
+  //    $("input").attr("type","radio");
+  //    $("input").attr("value","빵탄");
+  
+  /*
+  // 특별한 for문 => for in
+    var v_samObj = {
+        "mem1":"roze",
+        "mem2":"jenni",
+        "mem3":"risa",
+        "mem4":"jisoo",
+    }
+    
+    for(var v_attr in v_samObj){
+        alert(v_attr + " : " + v_samObj[v_attr]); // for in문 배열식 접근법**
+    }
+    */
+
+    /*
+    $("input").attr({
+        "type":"radio",
+        "value":"빵탄"
+      })
+    */
+
+</script>
+</body>
+</html>

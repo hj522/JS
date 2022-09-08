@@ -3,23 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
-   <script src="./03_myQuery.js"></script>
+   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+  <script src="./03_myQuery.js"></script>
 </head>
 <body>
     <input type="text" id="txt1" value="흥!"><br>
     <input type="text" id="txt2" value="칫!"><br>
     <input type="text" id="txt3" value="뿌!"><br>
     <input type="text" id="txt4" value="웅!"><br>
-    <div id="whathayong" class="hi" style="border:1px solid pink">무엇하용?0</div>
+    <div id="whathayong" class="hi" style="border:1px solid pink;color:rgb(15, 15, 15)">무엇하용?0</div>
     <div id="whathayong" class="hi" style="border:1px solid pink">무엇하용?1</div>
     <div id="whathayong" class="hi" style="border:1px solid pink">무엇하용?2</div>
-    <div id="whathayong" class="hi" style="border:1px solid pink">무엇하용?3</div>
 <script>
+    console.log($(".hi").eq(1));
+    console.log($(".hi").eq(1).end());
+
+    /*
+    console.log($(".hi"));
+    $(".hi").eq(1).html("메롱").css("color","blue")
+            .css("font-size","2em").attr("id","dongi");
+    */
+
+   // alert($(".hi").css("border"));
+   // alert($(".hi").css("color"));
+
+   /*
+   $(".hi").css("font-size","4em");
+   $(".hi").css("background-color","orange");
+   $(".hi").css("color",function(p_index,p_value){
+        if(p_index == 2) {
+            return "rgba(255,0,255,0.5)";
+    }
+    return p_value;
+   })
+   */
+
+   /*   // 위와 일치하는 자바스크립트 소스
+   var v_rozes = document.querySelectorAll("hi");
+   for(var i=0; i<v_rozes.length; i++) {
+        v_rozes[i].style.fontSize = "4em";
+   }
+   */
+
     // $("#whathayong").click(function(){  // js의 onclick=함수 에 해당!
     //     alert("왜 누르쇼?");
     // });
 
+    /*
     $(".hi").on("click",function(){    // js의 addEventListener에 해당!
         alert("메로로로로롤로ㅗㄹ로로로로롤ㅇ");
     }).html(function(p_inx,p_html){
@@ -31,7 +61,9 @@
 
     // $(".hi").empty(); // 무엇하용 전부 없어짐
     $(".hi").empty(); // 1번만 없어짐 
+*/
 
+/*
     // 개발자들이 value속성을 자주 다루다 보니,
     // jQuery에는 val() 이라는 value속성만을 다루는 메소드가 존재함
     // html() 메소드와 사용법이 동일
@@ -44,6 +76,7 @@
         }
         return p_value; // 나머지는 원래 가진 value값대로 리턴
     }).attr("type","radio").val("모두 다 사랑하리");
+*/
 </script>
 </body>
 </html>

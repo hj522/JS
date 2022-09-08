@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+    <meta charset="UTF-8">
+<script>
+
+// 전역변수 -> 페이지 전체 어디에서든 접근할 수 있는 변수
+// function 안에서 선언 되었는가, 밖에서 선언되었는가 
+    
+var v_myName="김태훈"; // 전역변수
+    function f_merong() {
+    
+    for(var i=10; i<111; i++) {
+        console.log("값은 얼마?");
+    }
+    alert(i); // 111. function 안에서 계속 살아있음
+         var v_merong2 = "김태훈2"; // 지역변수 -> function 안에 있는 변수
+         alert(v_merong2); 
+    }
+    f_merong();
+    
+ //   alert(v_merong2); 
+
+   // todo버튼 클릭으로 내용 등록하기
+   let toDoList = document.querySelector("#content");
+    var v_add = document.querySelector("#enter");
+    
+    function f_toDo(){    // 버튼에 클릭 이벤트가 발생하면
+        var li = document.createElement('li');
+        var v_btn = document.createElement('button');
+        v_btn.innerHTML='❌';
+        li.appendChild(v_btn);
+
+        v_btn = document.createElement('button');
+        v_btn.innerHTML='✔️';
+        li.appendChild(v_btn);
+
+        v_btn = document.createElement('button');
+        v_btn.innerHTML='⭐️';
+        li.appendChild(v_btn);
+
+        var v_span = document.createElement('span');
+        v_span.innerHTML=v_barEnter.value;
+        li.appendChild(v_span);
+ 
+        if (!v_barEnter.value)   // 입력창에 내용이 입력되지 않으면 알림창
+            alert('오늘 뭐할거냐고~~~~');
+        else {
+            toDoList.appendChild(li);   // 리스트창에 자식으로 붙이기
+            v_barEnter.value= "";         // 할 일 입력창 초기화
+        }
+    }
+    v_add.addEventListener('click',f_toDo);
+</script>

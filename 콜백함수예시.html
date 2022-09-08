@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    function introduce (lastName, firstName, callback) {
+    var fullName = lastName + firstName;
+    
+    callback(fullName);
+}
+ 
+function say_hello (name) {
+    console.log("안녕하세요 제 이름은 " + name + "입니다");
+}
+ 
+function say_bye (name) {
+    console.log("지금까지 " + name + "이었습니다. 안녕히계세요");
+}
+ 
+introduce("홍", "길동", say_hello);
+// 결과 -> 안녕하세요 제 이름은 홍길동입니다
+ 
+introduce("홍", "길동", say_bye);
+// 결과 -> 지금까지 홍길동이었습니다. 안녕히계세요
+</script>
+</body>
+</html>

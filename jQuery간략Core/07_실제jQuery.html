@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<!-- jQuery 설치는 아래 1줄로 끝, 가끔 면접에서 cdn이 뭐냐고 물어봄
+    CDN : Content Delivery Network
+    다운로드 받아서 쓰지 말고 그냥 구글서버에서 따와서 쓰는 것이 좋음
+-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- 아래 방식은 내 서버가 힘들어짐.. cdn으로 제공된다면 cdn방식을 사용하는 것이 훨씬 유리 --> 
+<!-- <script src="../jquery.min.js"></script>  -->
+<script>
+$(function(){   // 문서 로딩이 끝나면 이벤트 발생
+ //   alert("내가 빠를걸")
+ /* 나쁜 사용 방식
+    $("div").html("메롱"); // innerHTML
+    $("div").css("color","red"); // style객체를 다룸
+*/
+    // 조금 좋은 방식 -> 메소드 체인닝 활용
+//    $("div").html("메롱").css("color","red");
+    
+    // **가장 좋은 방식 -> 결과를 변수로 받아둠
+//    var v_divs = $("div");
+    var $divs = $("div");   // 똑똑한 개발자는 jQuery객체임을 표시하기 위해
+                            // 접두어로 $를 사알짝 붙여서 사용하기도 함. 
+    $divs.html("메롱").css("color","red");
+
+});
+window.onload = function(){
+  //  alert("누가 빠를까나");
+}
+</script>
+</head>
+<body>
+    <div>맨날 div1</div>
+    <div>맨날 div2</div>
+    <div>맨날 div3</div>
+    <div>숨 참고 div4</div>
+    <!-- 이미지나 동영상은 비동기로 로딩됨 -->
+    <video src="../videos/cook1.mp4"></video>
+<script>
+    // 오늘은 jQuery 기본 메소드만 정리.... (꼭 외우기!!)
+
+    /*
+    $(document).ready(function(){
+        alert("문서로딩 끝났어요");
+    });
+    */
+
+    // 위랑 아래는 같은 표현 방식!!
+    // window.onload와 비슷하지만 실제로 DomContentLoaded 이벤트 사용
+    $(function(){
+        alert("문서로딩 끝났어요2");
+    });
+
+
+    /* 
+    window.onload = function(){
+        alert("누가 빨라용?");  // 예상외의 결과... 이게 더 느려야되는데,, 무슨일?
+    }
+    */
+</script>
+</body>
+</html>

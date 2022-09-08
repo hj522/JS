@@ -1,0 +1,85 @@
+자바와 자바스크립트의 차이: 정적 언어 vs 동적 언어
+
+변수타입은 크게 기본(primitive)형과 참조(reference-객체)형이 있음**
+기본형은 number, string, boolean 이 있고, 참조형은 배열, json이 있다.
+
+.을 찍을 수 없으면 기본형
+.을 찍을 수 있으면 참조형... 객체
+
+* alart창에 'NaN'이 뜨는 경우: 'Not a Number'
+
+- 문자열은 ""만 false로 형변환, 나머지는 true로 형변환된다.
+- 숫자는 0만 false로 형변환, 나머지는 true로 형변환된다.
+
+<!-- DRY원칙(Do not Repeat Yourself) 개발자는 중복을 싫어한다. -->
+
+FP: Function Pointer (함수이름)
+
+<!-- [JSON] JavaScript Object Notation
+     자바스크립트 객체 명명법 -->
+
+* 버튼 만들기 onclick은 이벤트
+* f_click은 이벤트 핸들러
+
+type, value, onclick 과 같은 것들을 속성(attribute)라고 한다.
+각 태그는 element라고 불린다. (한 개의 객체라고 생각하면 됨)
+
+<div id="id_disp" onclick="f_divClick()">이건 뭐얌</div> 
+<!-- ***innerHTML: 여는 태그와 닫는 태그 사이에 들어가있는 내용을 의미함 ex)'이건 뭐얌' -->
+<div>내가innerHTML</div>
+
+// 기본 함수 선언법 - 선언 문법
+function f_dayoung() { 
+ alert("뿅");
+}
+
+<!-- 위와 결과는 같지만 이것은 '표현식(Expression)'이라고 한다... function 1개가 결과이기 때문에 -->
+var f_dayoung = function() {
+ alert("뿅2");
+}
+
+<!-- ** setTimeout(함수포인터,시간(밀리초),매개변수1,매개변수2....) -->
+setTimeout(f_after,2000,"효정","오늘 기운없엉?"); // 2초 뒤에 f_after 부름
+setTimeout(f_after(),2000,"효정","오늘 기운없엉?");
+<!-- f_after() <- 괄호를 넣으면 바로 함수가 실행되니 주의! -->
+
+<!-- 앞의 것이 끝나야 뒤의 것이 실행되는 것을 Synchronouse(동기) 라고 부르고
+     앞의 것이 실행중인데 뒤의 것이 실행되는 것은 Asynchronouse(비동기) 라고 부름 -->
+
+
+var v_replace= v_str.replace("김무건","배트맨");
+v_str= v_str.replace("김무건","배트맨"); // 아예 원본까지 바꾸려면 이렇게 사용
+alert(v_replace); // 김무건 -> 배트맨...
+<!-- replace는 새로운 문자열을 만들어서 return해준다! 원본은 안 바뀜.. *주의* -->
+
+
+* document.querySelector("css 선택자");
+* document.querySelectorAll("css 선택자");
+
+
+* 화면을 제어하는 display
+<div id="id_disp" style="display:block;"></div> 디폴트상태
+<div id="id_disp" style="visibility:hidden"> 보이지만 않음! 자리 차지o
+<div id="id_disp" style="display: none"> 아예 사라짐. 자리 차지x
+
+
+<!-- position:static -->
+default값.. static은 위치를 브라우저에게 맡기겠다는 뜻
+
+<!-- position:relative -->
+static에 의해 브라우저가 자리잡힌 후에 옮기겠다는 뜻
+
+<!-- position: absolute -->
+화면 왼쪽 모서리가 기준점이 되어 움직임. layer(층) 형성!
+
+
+[전역변수] -> 페이지 전체 어디에서든 접근할 수 있는 변수
+[지역변수] -> function 안에 있는 변수
+  ㄴ function 안에서 선언 되었는가, 밖에서 선언되었는가** 
+
+<!-- window.onload -->
+★★이벤트 자동 발생 시점은 html태그가 다 해석이 끝나고 페이지 내의 이미지 로딩까지 끝나면 발생!!★★
+
+★★DOM(Document Object Model)
+문서 트리구조를 나타냄! 족보와 같음. 
+아주 자주 쓰는 말

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    div {
+        border:1px solid black;     /* 시작 때는 필수. 다 하면 주석처리로 없애면 된당 */
+    }
+    #wrapper {
+        border: 1px solid black;
+        width: 99vw;
+        height: 99vh;
+    }
+    .common {
+        width:100%
+    }
+
+    #header {
+        width: 100%; /* 자식은 부모 기분으로 계산됨.. wrapper의 100% 만큼 */
+        height: 30%; 
+    }
+    #content {
+        height: 50%;
+    }
+    #footer {
+        height: 20%;
+    }
+    
+    .garo {
+        display: inline-block;
+        vertical-align: top; /* 수직 정렬. 요게 없으면 상당히 눈에 거슬림 */
+        width: 33%;
+        height: 100%;
+    }
+</style>
+</head>
+<body>
+    <!-- 항상 세로로 먼저 나누고, 가로 나누고, 세로 나누고, 가로 나누기 식으로 한다!
+         처음 나눌 땐 relative나 absolute를 사용하지 않는다.
+         border 스타일을 이용해서 눈으로 영역을 보며 작업한당.
+         제일 큰 영역(wrapper나 container란 이름으로)을 전체 영역으로 잡아주고 시작한다. (디자이너 스타일)
+    -->
+    <div id="wrapper">
+        <div id="header" class="common">헤더</div>
+        <div id="content" class="common">
+            <div class="garo"></div>
+            <div class="garo">바디2</div>
+            <div class="garo">바디3</div>
+        </div>
+        <div id="footer" class="common">바닥</div>
+    </div>
+
+</body>
+</html>

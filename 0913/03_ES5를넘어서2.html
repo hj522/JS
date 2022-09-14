@@ -1,18 +1,64 @@
 <!DOCTYPE html>
     <meta charset="UTF-8">
-    <script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<body>
+    <div>로제</div>
+    <div>제니</div>
+    <div>리사</div>
+    <div>지수</div>
+</body>
+<script>
+    // $("div").html((p_inx,p_html)=>{
+    //     console.log("this:",this);
+    //     console.log(p_html);
+    //     return p_html;
+    // });
+    // 화살표함수 안에서는 this가 원하는대로 세팅이 안 되는 제약사항이 잇음. 아주 꼴보기 시름 
+    // this 제약사항 굳이 외우지 말고 그냥 function 키워드를 사용한다.
+    // 강제로 꼭 쓰라는 건 아니지만 시대적 패션코드이니 조금은 따라가 주는 걸로...
+
+    $("div").html(function(p_inx,p_html){
+        console.log("this:",this); // this 확인
+        console.log(p_html);
+        return p_html;
+    });
+
+
         // *Arrow function (화살표 함수)
         // 화살표 함수는 this 사용에 몇가지 제약사항이 있는데
         // 제약사항 외우지 말고, this가 원하는대로 동작하지 않으면
         // 그냥 function 키워드를 사용할 것.
+
+        // const f_arrow = function(){
+        //     alert("뼈다귀 해장국 굳");
+        // }
+
+       
+        // const f_arrow = (p_arg)=>{       // 이것이 화살표 함수
+        //     alert("뼈다귀 해장국 굳 " + p_arg);
+        // }
         
+        // f_arrow("헤헤");
+
+       
+        /* 아래와 같은 경우
+        const f_arrow2 = (p_arg)=>{     // 매개변수 1개
+            return p_arg*2;               // 실행문은 오직 return문 1개..인 경우 return 생략 가능.
+        }
+
+       const f_arrow2 = p_arg => p_arg*2;   // 이렇게 간략히 표현 가능
+       alert(f_arrow2("100"));  // 눈으로 확인하고, 3번만 연습하면 OK! 
+        */
+
+
+
         /* 표현식을 이용한 함수 선언. (정식 선언 문법이 아님. 호이스팅 불가)
         var myfunc = function(){
             alert("완존 메롱");
         }
         */
 
-        myfunc();   // hoisting(올리기), 현재는 선언만 가능
+    //    myfunc();   // hoisting(올리기), 현재는 선언만 가능
         /*  정석 함수 선언법
         function myfunc() {
             alert("메롱");

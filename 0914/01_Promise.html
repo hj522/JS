@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+    <meta charset="UTF-8">
+<script>
+    // Promise **아주 중요!*************
+    // 자바의 try/catch와 비슷해 보이지만, Promise 기본적으로
+    // 비동기처리(자바의 thread)를 위해 만들어졌다는 게 중요!!
+
+    // 처음 볼 땐 이게 뭐얌, 갑자기 왜? 나한테 정말 왜이래? 이런 느낌
+    // 나온 배경: 비동기를 처리할 때 콜백함수를 많이 사용하는데
+    // 콜백 안에 콜백 그 안에 콜백 그 안에 콜백 식으로 프로그램 코드가 나오는
+    // 경우가 있어, 개발자들이 Hell Of Callback 이라 부르면서
+    // 개선하라고 소리를 마구 질러서 Promise가 나오게 됨
+    // 처음엔 칭찬 받았지만, 최종적으로는 조금만 나아졌다는 평가
+    // 다행인 건 여러분이 직접 Promise를 작성할 일은 잘 없다는 것..
+    // 사용만 잘해도 아주 훌륭
+
+    // resolve, reject도 함수(콜백)
+    // 잘 처리 되었을 때는 resolve에게 결과 값을
+    // 잘 안되었을 때는 reject에게 에러 값을...
+
+    // const f_promise = function(){
+    //     return new Promise((res,rej)=>{
+    //        // res("good!");
+    //         rej("약속 파토남");
+    //     });
+    // }
+        
+    // // 요렇게 Promise를 리턴해주는 라이브러리를 사용할 일이 많음
+    // f_promise().then((p_rslt)=>{ console.log("성공:",p_rslt)})
+    //             .catch((p_error)=>{ console.log("실패:",p_error)})
+    //             .finally(()=>{console.log("난 무조건이얌");})
+
+    //             // resolve -> then 실행
+    //             // reject -> catch 실행
+
+    const axios = {}; // 네임스페이스용(액시오스라고 읽음)
+    axios.get = function(p_url){
+        return new Promise((res,rej)=>{
+            let ajax = new XMLHttpRequest();
+            ajax.open("get",p_url,true);
+            ajax.onreadystatechange = ()=>{
+                if(ajax.readyState == 4 && ajax.status == 200){
+                    // 성공했을 때는 res/resolve
+                    res(ajax.responseText);
+                }
+            }
+            ajax.send();
+        });
+    }
+
+    // 요렇게 Promise를 리턴해주는 라이브러리를 사용할 일이 많음
+    f_promise("../css/test.css").then((p_rslt)=>{ console.log("성공:",p_rslt)})
+            .catch((p_error)=>{ console.log("실패:",p_error)})
+            .finally(()=>{console.log("난 무조건이얌");})
+
+    f_promise("../js/mylib.js").then((p_rslt)=>{ console.log("성공:",p_rslt)})
+            .catch((p_error)=>{ console.log("실패:",p_error)})
+            .finally(()=>{console.log("난 무조건이얌");})
+
+</script>

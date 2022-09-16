@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<body>
+    <div id="disp"></div>
+</body>
+<script>
+    // Promise가 나왔지만 여전히 비동기처리
+    // 코드가 복잡해지고 가독성이 떨어지는 문제는 여전히 남아있어 불만이 잔재하였는데,
+    // async, await(정말 굿 아이디어)가 나와서 엄청 칭찬을 받게 됨.. Promise 베이스로 구동.
+    // 인간의 뇌는 비동기에 익숙하지 않음. 동기방식에 익숙함
+
+
+const axios = {}; // 네임스페이스용(액시오스라고 읽음)
+axios.get = function(p_url){
+    return new Promise((res,rej)=>{
+        let ajax = new XMLHttpRequest();
+        ajax.open("get",p_url,true);
+        ajax.onreadystatechange = ()=>{
+            if(ajax.readyState == 4 && ajax.status == 200){
+                // 성공했을 때는 res/resolve
+                res(ajax.responseText);
+            }
+        }
+        ajax.send();
+    });
+}
+
+// async와 await는 세트로 
+async function f_good() {
+      let response = await axios.get("../css/test.css")
+      document.querySelector("#disp").innerHTML = response;
+}
+
+f_good();
+
+</script>
+

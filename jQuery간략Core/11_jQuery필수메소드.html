@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <div id="disp">
+        <img src="../images/p1.jpg" class="yummy" width="100" height="100">
+        <img src="../images/p2.jpg" class="nyam" width="100" height="100">
+        <img src="../images/p3.jpg" class="yummy" width="100" height="100">
+        <img src="../images/p4.jpg" class="nyam" width="100" height="100">
+    </div>
+    <input type="button" value="돌리깅" id="btn1">
+    <input type="button" value="방아쇠" id="trigger">
+<script>
+    $("#trigger").on("click",function(){
+        $("#btn1").trigger("click");     // btn1버튼 클릭
+    });
+
+
+    // 선택된 것 안에서 또 골라보기. filter() 메소드
+    $("#btn1").click(function(){
+        $("#disp").children().filter(".nyam")         // 이미지 4개 중에서 또 고르기
+                            .attr("width","400")    // 쓰기
+                            .attr("height","500");  // 쓰기
+       // $(".nyam") 처음부터 이렇게 쓸 수 없음.. 필터를 사용 
+    });
+
+
+
+    /* 변수 처리해야 되는 부분 잘 확인할 것 !!
+
+    var $disp = $("#disp");
+    $("#btn1").on("click",function(){
+        var $childs = $disp.children();   // 이거는 약간 애매(바뀐 걸 읽어와야 하기 때무네)
+        console.log($childs.length-1);
+        console.log($childs.eq(3));
+        $disp.append(
+            $childs.eq(0)); // 맨앞사진부터 돌게됨
+   //         $("#disp").children().eq(2)); // 3번째사진부터 돌게됨
+})
+   // children() = 자식들 한번에 가져오는 메소드**
+    */
+
+
+
+    // document.createElement("img")
+
+    // 부모.append(자식)
+    // for(var i=1; i<=6; i++) {
+    //     $("#disp").append($("<img>").attr("src","../images/c" + i + ".jpg") // 이미지객체가 만들어짐
+    //                                 .css("width","100px")    // 자식
+    //                                 .css("height","100px")) // 자식으로 붙여넣어라
+    // }
+
+//     // 자식.appendTo(부모)
+//     for(var i=1; i<=4; i++) {
+//     $("<img>").attr("src","../images/c" + i + ".jpg") // 이미지객체가 만들어짐
+//                                 .css("width",100*i + "px")
+//                                 .css("height",100*i + "px").appendTo($("#disp")); 
+// }
+                         // 생성된 이미지를 #disp에 자식으로 붙여넣으라는 의미..
+
+
+    // 필수 메소드
+    // ** append, appendTo ** 방향만 다르니, 선택해서 1개만 꼭 잘 써야 함!!
+    // <div></div>, filter, trigger, closest, clone, ?
+</script>
+</body>
+</html>

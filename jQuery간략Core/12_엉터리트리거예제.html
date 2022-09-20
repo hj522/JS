@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <!-- input type=file은 브라우저마다 모양이 다름.. 완존 짜증
+        모양을 똑같이 맹글어오라고 저 윗분께서.... 지x 
+    -->
+        <button id="sy">파일찾기</button>
+        <input type="file" id="surinam" value="" style="display:none">
+    <div id="disp"></div>
+
+        <!-- table#mytbl>tbody>tr*4>td*3 -->
+    <table id="mytbl" border="1">
+        <tbody class="jobumo">
+            <tr>
+                <td>1</td>
+                <td>김연수</td>
+                <td>흥</td>
+            </tr>
+            <tr id="smj">
+                <td>2</td>
+                <td>안하용</td>
+                <td>치</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>최승훈</td>
+                <td>피</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td id="start">성민정</td>
+                <td>헉</td>
+            </tr>
+        </tbody>
+    </table>
+
+<script>
+    // 자기자신포함 부모의 부모의 부모 요따구로 찾아감.
+    // 부모의 형제는 찾지 않음
+//    console.log($("#start").closest("#smj").html()); // 못 찾아.. undefined.. 
+//    console.log($("#start").closest("tr").html()); // 가장 가까운 tr 태그를 찾아감
+//        console.log($("#start").closest("tbody").html());
+//        console.log($("#start").closest(".jobumo").html()); // 위와 동일
+//        console.log($("#start").closest("td").html()); // 찾기 시작 위치에 자기자신도 포함된다!**
+ //       $("#start").closest("tbody").children().eq(0).children().eq(1).html("김연수바보");    // tbody의 첫번째자식의 두번째자식의 html........
+
+    $("#disp").append($("table").clone(true)); // 깊은 복사. 원래 cloneNode(true);
+
+    // $("#sy").on("click",function(){
+    //     $("#surinam").trigger("click");
+    // })
+</script>
+</body>
+</html>

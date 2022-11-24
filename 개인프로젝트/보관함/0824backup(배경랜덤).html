@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todolist</title>
+<style>
+    #wrapper {
+        background-image: url("../images/배경1.png"); opacity : 0.3;
+        background-size: cover;
+        width: 100%;
+        height: 98vh;
+    }
+
+    .wrapper::before{
+        content:"";
+        opacity:0.5;
+        position:absolute;
+        top:0px;
+        left:0px;
+        right:0px;
+        bottom:0px;
+        background-color: #000;
+    }
+
+    #nemo {
+        margin: auto auto;
+        top: 200px;
+        left: 600px;
+        color: black;
+        font-size: 30px;
+        text-align: center;
+        position: absolute;
+        background-color: white; opacity : 0.85;
+        width: 700px;
+        height: 550px;
+        border: 3px solid rgb(204, 204, 204);
+        border-radius: 15px;
+    }
+    
+
+</style>
+</head>
+<body>
+    <div id="wrapper">
+    </div>
+    <div id="nemo"><br>To-do List<br>
+        </div>
+<script>
+    
+    // 새로고침(재접속) 할 때마다 배경 이미지 랜덤으로 변경
+    var backArr = new Array();
+    backArr[0] = "../images/배경1.jpg";
+    backArr[1] = "../images/배경2.jpg";
+    backArr[2] = "../images/배경3.jpg";
+    backArr[3] = "../images/배경4.jpg";
+    backArr[4] = "../images/배경5.jpg";
+    backArr[5] = "../images/배경6.jpg";
+    backArr[6] = "../images/배경7.jpg";
+    backArr[7] = "../images/배경8.jpg";
+    
+    var obj = document.getElementById('wrapper');
+    var backRan = Math.floor(Math.random()*(backArr.length));
+    j = (isNaN(backRan)) ? 0 : backRan; // backRan이 숫자가 아니면 0 
+    obj.style.backgroundImage = 'url(' + backArr[backRan] + ')';
+    
+    // ${imgNumber + 1}    ->   imgNumber+1
+    // "aaa" +  (imgNumber+1) + ".jpg";
+    // `aaa${imgNumber+1}.jpg`;
+
+    // var v_changeBg = document.querySelector("#wrapper");
+    // v_changeBg.style.backgroundImage = 'url("../images/배경8.jpg")';
+    // v_changeBg.style.opacity="0.3";
+</script>
+</body>
+</html>
+
+#nemo {
+    margin: auto auto;
+    top: 200px;
+    left: 600px;
+    color: black;
+    font-size: 30px;
+    text-align: center;
+    position: absolute;
+    background-color: white; opacity : 0.85;
+    width: 700px;
+    height: 550px;
+    border: 3px solid rgb(204, 204, 204);
+    border-style: dashed;
+    border-radius: 15px;
+    
+}

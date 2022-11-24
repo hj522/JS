@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- 폰트 변경 -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" href="../images/icon2.png" type="image/x-icon"> <!-- 탭 옆 이미지 -->
+    <link rel="stylesheet" href="../개인프로젝트/toDoStyle.css">
+ <style>
+    .todoList {
+        padding-left: 3%;
+        text-align: left;
+        font-weight: 700;
+        list-style: none;   /* 리스트 점(·) 없애기 */
+        margin: 5px;
+    }
+
+    .todoList li {    /* todolist의 li */
+        margin: 0;
+        padding: 0;
+    }
+
+    .todoList button {
+    font-size: 13px;
+    padding: 5px;
+    background-color: rgba(255, 255, 255, 0);
+    outline: none;
+    border: none;
+    }
+
+    .todoList button:hover {    /* 마우스오버 시 모양 변경 */
+    cursor: pointer;
+    opacity: 0.5;
+    }
+
+    .todoList span {
+    margin-left: 10px;
+    }
+
+</style>
+</head>
+<body>
+<div id="modal">
+    <div id="modalCon">
+        <br><h3>❤️🧡💛💚💙💜🤍</h3><h1>To-Do List</h1>
+        <!-- <figure><img src="/images/복사본_c6.jpg" alt=""></figure> -->
+        <input type="text" class="modalBar" placeholder="오늘의 다짐을 적고 힘차게 하루를 시작합시다^ㅁ^" style="font-size:21px;" autofocus>
+        <br><br><br><br><br><br><br><br>
+        <input type="button" value="✏️" onclick="f_modalClose()"> 
+    </div>
+</div>
+    <div id="wrapper">
+    </div>
+    <div id="nemo">
+        <div id="now2"><br><br>0000-00-00</div>
+        <div id="now">00 : 00 : 00</div>
+        <input type="text" class="bar" style="font-size:15px;" autofocus>
+        <div id="enter" onmouseover="f_over(this)" onmouseout="f_out(this)" style="cursor: pointer;"></div>
+        <div>
+            <ul id="content" class="todoList" style="text-align: left; overflow: auto;"></ul>
+        </div>
+    </div>
+<script>
+    
+    // localstorage 이용해서 내용 저장되도록..
+    // 삭제(가운데 라인 + 회색 처리)
+    // 글씨 작게ㅠㅠ
+
+    // 할일(입력내용) 저장
+    let toDos = [];
+
+    function f_saveTodo() {
+        localStorage.setItem("todos",JSON.stringify);
+    }
+
+    function f_deleteTodo() {
+
+    }
+
+
+
+
+    // 등록버튼 마우스오버 시 색깔있는 이미지로 변경
+    function f_over(p_this) {
+        var v_enter = document.querySelector("#enter");
+        v_enter.style.backgroundImage = 'url("../images/todo2.png")';
+    }
+    
+    function f_out(p_this) {
+        var v_enter = document.querySelector("#enter");
+        v_enter.style.backgroundImage = 'url("../images/todo.png")';
+    }
+
+    // enter로 입력 내용 등록하기
+    var v_barEnter = document.querySelector(".bar");
+    v_barEnter.addEventListener("keydown",function() {
+        if(event.keyCode == 13) {
+            f_toDo();
+        }
+    })
+
+    // todo버튼 클릭으로 내용 등록하기
+    let toDoList = document.querySelector("#content");
+    var v_add = document.querySelector("#enter");
+    
+    function f_toDo(){    // 버튼에 클릭 이벤트가 발생하면
+        var li = document.createElement('li');
+        var v_btn = document.createElement('button');
+        v_btn.innerHTML='❌';
+        li.appendChild(v_btn);
+        // v_btn.addEventListener("click", f_delete);
+
+        v_btn = document.createElement('button');
+        v_btn.innerHTML='✔️';
+        li.appendChild(v_btn);
+
+        v_btn = document.createElement('button');
+        v_btn.innerHTML='⭐️';
+        li.appendChild(v_btn);
+
+        var v_span = document.createElement('span');
+        v_span.innerHTML=v_barEnter.value;
+        li.appendChild(v_span);
+ 
+        if (!v_barEnter.value)   // 입력창에 내용이 입력되지 않으면 알림창
+            alert('오늘 뭐할거냐고~~~~');
+        else {
+            toDoList.appendChild(li);   // 리스트창에 자식으로 붙이기
+            v_barEnter.value= "";         // 할 일 입력창 초기화
+        }
+    }
+    v_add.addEventListener('click',f_toDo);
+
+
+    // 새로고침(재접속) 할 때마다 배경 이미지 랜덤으로 변경
+    var backArr = new Array();
+    backArr[0] = "../images/배경1.jpg";
+    backArr[1] = "../images/배경2.jpg";
+    backArr[2] = "../images/배경3.jpg";
+    backArr[3] = "../images/배경4.jpg";
+    backArr[4] = "../images/배경5.jpg";
+    backArr[5] = "../images/배경6.jpg";
+    backArr[6] = "../images/배경7.jpg";
+    backArr[7] = "../images/배경8.jpg";
+    
+    var obj = document.getElementById('wrapper');
+    var backRan = Math.floor(Math.random()*(backArr.length));
+    j = (isNaN(backRan)) ? 0 : backRan; // backRan이 숫자가 아니면 0 
+    obj.style.backgroundImage = 'url(' + backArr[backRan] + ')';
+
+
+    // 현재 시간 나타내기
+    function f_now() {
+        
+        var v_today = new Date();
+
+        // 요일 넣기
+        // var week = ['월', '화', '수', '목', '금', '토', '일'];
+        // var v_day = week[v_today.getDay];
+
+        var v_year = v_today.getFullYear();
+
+        var v_month = v_today.getMonth() +1; // 0~11... 1월이 0으로 표현되기 때문에 +1
+        if(v_month < 10) {
+            v_month = "0" + v_month;
+        }
+
+        var v_date = v_today.getDate();
+
+
+        var v_hour = v_today.getHours();
+        if(v_hour < 10) {
+            v_hour = "0" + v_hour; 
+        }
+
+        var v_min = v_today.getMinutes();
+        if(v_min < 10) {
+            v_min = "0" + v_min;
+        }
+
+        var v_sec = v_today.getSeconds();
+        if(v_sec < 10) {
+            v_sec = "0" + v_sec;
+        }
+
+        now2.innerHTML = "<br>" + v_year + "-" + v_month + "-" + v_date;
+        now.innerHTML = v_hour + " : " + v_min + " : " + v_sec;
+        setTimeout(f_now,1000);
+    }
+    
+    f_now();
+    
+    
+    // 모달
+    var v_modal = document.querySelector("#modal");
+    
+    window.onload = v_modal.style.display = "block"; // 페이지 열면 바로 모달(팝업창)
+
+    // (모달) enter로 입력 내용 등록하기
+    var v_modalEnter = document.querySelector(".modalBar");
+    v_modalEnter.addEventListener("keydown",function() {
+    if(event.keyCode == 13) {
+        f_Go();
+    }
+})
+
+function f_Go() {
+    if (!v_modalEnter.value)   // 입력창에 내용이 입력되지 않으면 알림창
+        alert('입력해');
+    else {
+        f_modalClose();
+        // 다짐 적은거 그대로 뜨게 하기
+    }
+}
+
+function f_modalClose() {
+        if (!v_modalEnter.value)   // 입력창에 내용이 입력되지 않으면 알림창
+        alert('입력해');
+    else {
+        v_modal.style.display = "none";
+    }
+}
+
+
+
+</script>
+</body>
+</html>

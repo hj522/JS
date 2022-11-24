@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    var v_tblName = "toDoKey";
+    var v_Datas = [];
+
+    function f_ranYN(){                        
+        return  Math.floor(Math.random()*2)? "Y" : "N"
+    }
+
+    for(var i=1; i<=10; i++){
+        var v_toDo = {};
+        v_toDo.data =  "먹기" + i;
+        v_toDo.complete = f_ranYN();
+        v_Datas.push(v_toDo);
+    }
+
+    localStorage.setItem(v_tblName, JSON.stringify(v_Datas));
+
+</script>
